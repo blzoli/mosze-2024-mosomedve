@@ -98,5 +98,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void PickUpWeapon(Weapon weapon)
+    {
+        // Equip the new weapon
+        this.weapon = weapon;
+    }
+
 
 }
