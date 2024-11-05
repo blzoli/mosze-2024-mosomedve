@@ -5,7 +5,7 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
 
-    public float speed = 10.0f;
+    public float speed = 9.0f;
 
     public float maxLife = 30.0f;
 
