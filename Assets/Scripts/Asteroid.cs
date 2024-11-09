@@ -2,30 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Represents an asteroid in the game.
+/// </summary>
 public class Asteroid : MonoBehaviour
 {
+    /// <summary>
+    /// The speed of the asteroid.
+    /// </summary>
+    public float speed = 0.5f;
 
-    public float speed = 9.0f;
-
+    /// <summary>
+    /// The maximum life of the asteroid in seconds.
+    /// </summary>
     public float maxLife = 30.0f;
 
-    private Rigidbody2D _rigidbody;
+    private Vector2 direction = Vector2.down;
 
-    private void Awake()
+
+    /// <summary>
+    /// Moves the asteroid on frame update.
+    /// </summary>
+
+    private void Update()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        transform.Translate(direction * speed * 0.0004f);
+        Destroy(this.gameObject, maxLife);
     }
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
-
-
+    /// <summary>
+    /// Sets the trajectory of the asteroid.
+    /// </summary>
+    /// <param name="direction">The direction of the trajectory.</param>
     public void SetTrajectory(Vector2 direction)
     {
-        _rigidbody.AddForce(direction * this.speed);
-        Destroy(this.gameObject, this.maxLife);
+        direction = direction.normalized;
+    }
+
+    /// <summary>
+    /// Checks for collisions with the player.
+    /// </summary>
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Player hit!");
+        }
     }
 }

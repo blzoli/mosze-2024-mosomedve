@@ -980,7 +980,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931724718}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1009,6 +1009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1238230977}
   - component: {fileID: 1238230976}
+  - component: {fileID: 1238230978}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1044,6 +1045,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1238230978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238230975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: debdad3463c9eac4c8431ef087f975aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidPrefab: {fileID: -5683983778686425968, guid: fda29bcdb1985d1458f00095e65fffe5, type: 3}
+  trajectoryVariance: 15
+  spawnRate: 1.5
+  spawnDistance: 10
 --- !u!1 &1348539503
 GameObject:
   m_ObjectHideFlags: 0
