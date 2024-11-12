@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  projectilePrefab: {fileID: 5154777675223843460, guid: 2ebb00a0acbdebc48a2e0f62eb654028, type: 3}
+  projectileSpeed: 3
 --- !u!61 &1109936072656351224
 BoxCollider2D:
   m_ObjectHideFlags: 0
