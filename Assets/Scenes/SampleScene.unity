@@ -628,6 +628,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 10
 --- !u!1 &545649877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,6 +1267,70 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &1501797828
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2066571925585607839, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.79944
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066571925585607839, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.2765439
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066571925585607839, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066571925585607839, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066571925585607839, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066571925585607839, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066571925585607839, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066571925585607839, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066571925585607839, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066571925585607839, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102850689004326803, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      propertyPath: m_Name
+      value: LaserGunObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 6048445254406789352, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 5154777675223843460, guid: 2afb9629736d7664d864e90aedd1b0a2, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2576059973566214098, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: e43e7391b0f888e46ba42156f9ff7d7f, type: 3}
 --- !u!1001 &1634158133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1524,3 +1590,4 @@ SceneRoots:
   - {fileID: 43377516}
   - {fileID: 1634158133}
   - {fileID: 2030350391}
+  - {fileID: 1501797828}
