@@ -657,9 +657,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ceb6d409ff78e46ab37d09d4632dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1492938173737754207, guid: 0570f53eaca24b34aad7a7e58d25e579, type: 3}
+  enemyPrefab: {fileID: 8701018368274696850, guid: 9cf7835513ca3fd43b90941640217aa0, type: 3}
   spawnInterval: 10
-  spawnRange: 5
+  spawnRangeX: 5
+  spawnPositionY: 6
 --- !u!4 &529970354
 Transform:
   m_ObjectHideFlags: 0
@@ -702,8 +703,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.82, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: -3}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: -3.75}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 649141376}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
