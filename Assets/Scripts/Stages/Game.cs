@@ -17,6 +17,7 @@ public class Game : MonoBehaviour
 
 
     public static bool isPaused = false; ///< Flag to indicate if the game is paused.
+    public static bool isOver = false; ///< Flag to indicate if the game is over.
 
     /// @brief Initializes the game and starts the first stage.
     void Start()
@@ -47,16 +48,44 @@ public class Game : MonoBehaviour
         }
     }
 
+    /// @brief Restarts current stage.
+    /// 
+    /// This method restarts the current stage by resetting the stage ID and player attributes.
+    
+    public void RestartStage()
+    {
+        isOver = false;
+        TogglePause();
+        CurrentStageID--;
+        PlayerController.ResetPlayer();
+        // find all enemies by tag and destroy them
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        StartNextStage();
+    }
+
     /// @brief Pauses the game.
     /// 
     /// This method pauses the game by setting the timescale to 0.
 
-    public void TogglePause()
+    public static void TogglePause()
     {
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0 : 1;
+    }
 
-        // TODO: Show or hide pause menu
+    /// @brief Game over method.
+    /// 
+    /// This method is called when the game is over. Pauses time and shows the game over screen.
+    /// 
+
+    public static void GameOver()
+    {
+        isOver = true;
+        TogglePause();
     }
 
     /// @brief Handles the game update loop.
@@ -66,6 +95,13 @@ public class Game : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
+        }
+        if (isOver)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RestartStage();
+            }
         }
     }
 

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     /// @brief The weapon equipped by the player.  
     public Weapon weapon;
     /// @brief The health of the player
-    public int health = 3;
+    public static int health = 3;
 
 
     private Vector2 screenBounds; ///< The screen boundaries in world units.
@@ -104,6 +104,26 @@ public class PlayerController : MonoBehaviour
     {
         // Equip the new weapon
         this.weapon = weapon;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        // Reduce health by the damage amount
+        health -= damage;
+
+        // Check if the player has run out of health
+        if (health <= 0)
+        {
+            Game.GameOver();
+            // Game over
+            Debug.Log("Game Over!");
+        }
+    }
+
+    public static void ResetPlayer()
+    {
+        // Reset the player's health
+        health = 3;
     }
 
 
