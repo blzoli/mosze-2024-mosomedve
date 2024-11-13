@@ -312,6 +312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 3
 --- !u!1 &358174847
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +1014,7 @@ GameObject:
   - component: {fileID: 1238230977}
   - component: {fileID: 1238230976}
   - component: {fileID: 1238230978}
+  - component: {fileID: 1238230979}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1063,6 +1066,22 @@ MonoBehaviour:
   trajectoryVariance: 15
   spawnRate: 0.5
   spawnDistance: 7
+--- !u!114 &1238230979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238230975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ceb6d409ff78e46ab37d09d4632dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 8701018368274696850, guid: 9cf7835513ca3fd43b90941640217aa0, type: 3}
+  spawnInterval: 10
+  spawnRangeX: 5
+  spawnPositionY: 6
 --- !u!1 &1348539503
 GameObject:
   m_ObjectHideFlags: 0
