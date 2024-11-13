@@ -48,6 +48,25 @@ public class Game : MonoBehaviour
         }
     }
 
+    /// @brief Restarts current stage.
+    /// 
+    /// This method restarts the current stage by resetting the stage ID and player attributes.
+    
+    public void RestartStage()
+    {
+        isOver = false;
+        TogglePause();
+        CurrentStageID--;
+        PlayerController.ResetPlayer();
+        // find all enemies by tag and destroy them
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        StartNextStage();
+    }
+
     /// @brief Pauses the game.
     /// 
     /// This method pauses the game by setting the timescale to 0.
@@ -76,6 +95,13 @@ public class Game : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
+        }
+        if (isOver)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RestartStage();
+            }
         }
     }
 

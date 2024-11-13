@@ -55,17 +55,13 @@ public class GameUIDisplay : MonoBehaviour
     /// 
     public void ShowGameOver()
     {
-        if (Game.isOver)
-        {
-            // Show game over screen
-            gameOverMenu.SetActive(true);
-        }
+        gameOverMenu.SetActive(Game.isOver);
     }
 
 
     void Start()
     {
-        UpdateHealth(player.health);
+        UpdateHealth(PlayerController.health);
         UpdateStage(game.CurrentStageID);
         UpdatePauseMenu();
         ShowGameOver();
@@ -73,9 +69,9 @@ public class GameUIDisplay : MonoBehaviour
 
     private void Update()
     {
-        if (player.health != healthPanel.childCount)
+        if (PlayerController.health != healthPanel.childCount)
         {
-            UpdateHealth(player.health);
+            UpdateHealth(PlayerController.health);
         }
 
         if (game.CurrentStageID != int.Parse(stageText.text.Split(' ')[1]))
