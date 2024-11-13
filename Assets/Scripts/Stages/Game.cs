@@ -15,6 +15,9 @@ public class Game : MonoBehaviour
     /// @brief The ID of the currently active stage.
     public int CurrentStageID { get; private set; } ///< Current stage ID.
 
+
+    public static bool isPaused = false; ///< Flag to indicate if the game is paused.
+
     /// @brief Initializes the game and starts the first stage.
     void Start()
     {
@@ -43,4 +46,27 @@ public class Game : MonoBehaviour
             Debug.Log("All stages completed.");
         }
     }
+
+    /// @brief Pauses the game.
+    /// 
+    /// This method pauses the game by setting the timescale to 0.
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0 : 1;
+
+        // TODO: Show or hide pause menu
+    }
+
+    /// @brief Handles the game update loop.
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
+    }
+
 }

@@ -26,6 +26,10 @@ public class Asteroid : MonoBehaviour
 
     private void Update()
     {
+        if (Game.isPaused)
+        {
+            return;
+        }
         transform.Translate(direction * speed * 0.0004f);
         Destroy(this.gameObject, maxLife);
     }
