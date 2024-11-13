@@ -30,3 +30,4 @@ public class StageDisplay : MonoBehaviour
         textMeshPro.text = "Current Stage ID: " + game.CurrentStageID;
     }
 }
+

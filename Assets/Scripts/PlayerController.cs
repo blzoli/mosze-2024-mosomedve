@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     /// @brief The weapon equipped by the player.  
     public Weapon weapon;
+    /// @brief The health of the player
+    public int health = 3;
 
 
     private Vector2 screenBounds; ///< The screen boundaries in world units.
