@@ -106,5 +106,19 @@ public class PlayerController : MonoBehaviour
         this.weapon = weapon;
     }
 
+    public void TakeDamage(int damage)
+    {
+        // Reduce health by the damage amount
+        health -= damage;
+
+        // Check if the player has run out of health
+        if (health <= 0)
+        {
+            Game.GameOver();
+            // Game over
+            Debug.Log("Game Over!");
+        }
+    }
+
 
 }

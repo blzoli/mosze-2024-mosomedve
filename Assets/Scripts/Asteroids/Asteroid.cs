@@ -15,7 +15,7 @@ public class Asteroid : MonoBehaviour
     /// <summary>
     /// The maximum life of the asteroid in seconds.
     /// </summary>
-    public float maxLife = 30.0f;
+    public float maxLife = 10.0f;
 
     private Vector2 direction = Vector2.down;
 
@@ -51,6 +51,8 @@ public class Asteroid : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+            player.TakeDamage(1);
             Debug.Log("Player hit!");
         }
     }
