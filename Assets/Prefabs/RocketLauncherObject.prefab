@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1109936072656351224}
   m_Layer: 0
   m_Name: RocketLauncherObject
-  m_TagString: Untagged
+  m_TagString: WeaponPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
