@@ -19,8 +19,11 @@ public class StageTrigger : MonoBehaviour
         if (gameManager != null)
         {
             // Call StartNextStage on the Game instance
-            gameManager.StartNextStage();
-            Debug.Log("Next stage triggered.");
+            if (collision.transform.tag == "Player")
+            { 
+                gameManager.StartNextStage();
+                Debug.Log("Next stage triggered.");
+            }
         }
         else
         {

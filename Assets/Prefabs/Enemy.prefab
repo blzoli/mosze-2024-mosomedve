@@ -100,4 +100,6 @@ MonoBehaviour:
   speed: 3
   health: 100
   attackPower: 10
-  attackRange: 5
+  attackRange: 7
+  attackRate: 1
+  weapon: {fileID: 3189592628282446667, guid: 3e3d3bc88c784284e8ea5a3ae144dbf1, type: 3}

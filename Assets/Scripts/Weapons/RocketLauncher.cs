@@ -21,19 +21,19 @@ public class RocketLauncher : Weapon
         this.damage = 2;
     }
 
-    public override void Fire(string projectileType)
+    public override void Fire(GameObject caller)
     {
         // Implement the firing logic for the RocketLauncher
         Debug.Log("RocketLauncher Fired!");
 
-        direction = projectileType == "Player" ? Vector2.up : Vector2.down;
+        direction = caller.tag == "Player" ? Vector2.up : Vector2.down;
 
 
         if (projectilePrefab != null)
         {
-            Vector3 firePosition = GameObject.FindWithTag("Player").transform.position;
+            Vector3 firePosition = caller.transform.position;
             GameObject projectile = Instantiate(projectilePrefab, firePosition, Quaternion.identity);
-            projectile.tag = (projectileType == "Player") ? "PlayerProjectile" : "EnemyProjectile"; // Set the tag of the projectile to projectileTag
+            projectile.tag = (caller.tag == "Player") ? "PlayerProjectile" : "EnemyProjectile"; // Set the tag of the projectile to projectileTag
             projectile.GetComponent<Bullet>().damage = damage; // Set the damage of the projectile to damage
 
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();

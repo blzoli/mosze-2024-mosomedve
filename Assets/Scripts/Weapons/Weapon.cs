@@ -13,7 +13,7 @@ public abstract class Weapon : Item
     /// <summary>
     /// Fire the weapon.
     /// </summary>
-    public abstract void Fire(string projectileType);
+    public abstract void Fire(GameObject caller);
 
     /// <summary>
     /// Pick up the weapon.
@@ -27,4 +27,5 @@ public abstract class Weapon : Item
             playerController.PickUpWeapon(this);
         }
     }
+
 }
