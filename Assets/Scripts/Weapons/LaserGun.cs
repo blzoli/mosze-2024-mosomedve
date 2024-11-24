@@ -21,8 +21,6 @@ public class LaserGun : Weapon
 
     public override void Fire(GameObject caller)
     {
-        // Implement the firing logic for the LaserGun
-        Debug.Log("LaserGun fired!");
 
         direction = caller.tag == "Player" ? Vector2.up : Vector2.down;
 

@@ -23,8 +23,6 @@ public class RocketLauncher : Weapon
 
     public override void Fire(GameObject caller)
     {
-        // Implement the firing logic for the RocketLauncher
-        Debug.Log("RocketLauncher Fired!");
 
         direction = caller.tag == "Player" ? Vector2.up : Vector2.down;
 

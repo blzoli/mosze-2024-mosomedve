@@ -6,10 +6,10 @@ public class Enemy : MonoBehaviour
 {
     // Alap attribútumok
     public float speed = 3.0f;  // sebesseg
-    public int health = 100;    // hp
+    public int health = 5;    // hp
     public int attackPower = 10; // attack
     public float attackRange = 7.0f; // attack range
-    public float attackRate = 1.0f; // attack rate
+    public float attackRate = 2.0f; // attack rate
 
     public Weapon weapon; // fegyver
 

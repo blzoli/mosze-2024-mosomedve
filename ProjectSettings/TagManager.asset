@@ -7,6 +7,8 @@ TagManager:
   - EnemyProjectile
   - Enemy
   - WeaponPickup
+  - PlayerProjectile
+  - Asteroid
   layers:
   - Default
   - TransparentFX

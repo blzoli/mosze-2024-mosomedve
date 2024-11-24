@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238230975}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: debdad3463c9eac4c8431ef087f975aa, type: 3}
   m_Name: 
@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8701018368274696850, guid: 9cf7835513ca3fd43b90941640217aa0, type: 3}
-  spawnInterval: 10
+  spawnInterval: 5
   spawnRangeX: 5
   spawnPositionY: 6
 --- !u!114 &1238230980
