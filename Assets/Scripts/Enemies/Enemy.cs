@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     // Alap attribútumok
     public float speed = 3.0f;  // sebesseg
     public int health = 100;    // hp
     public int attackPower = 10; // attack
     public float attackRange = 5.0f; // attack range
+
+    public Weapon weapon; // fegyver
 
     private Transform player;    // jatekos pozicioja
 
