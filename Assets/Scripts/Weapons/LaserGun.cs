@@ -11,7 +11,7 @@ public class LaserGun : Weapon
     /// 
     public GameObject projectilePrefab;
     public float projectileSpeed = 10f;
-    public override void Fire()
+    public override void Fire(string projectileType)
     {
         // Implement the firing logic for the LaserGun
         Debug.Log("LaserGun fired!");
