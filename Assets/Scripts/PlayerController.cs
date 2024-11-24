@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
             if (weapon != null)
             {
                 // Fire the weapon
-                weapon.Fire();
+                weapon.Fire(transform.gameObject);
             }
             else Debug.Log("No weapon equipped!");
         }

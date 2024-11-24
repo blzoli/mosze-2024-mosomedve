@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - EnemyProjectile
   - Enemy
+  - WeaponPickup
+  - PlayerProjectile
+  - Asteroid
   layers:
   - Default
   - TransparentFX

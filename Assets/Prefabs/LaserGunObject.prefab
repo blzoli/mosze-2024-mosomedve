@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6048445254406789352}
   m_Layer: 0
   m_Name: LaserGunObject
-  m_TagString: Untagged
+  m_TagString: WeaponPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  projectilePrefab: {fileID: 5154777675223843460, guid: 2afb9629736d7664d864e90aedd1b0a2, type: 3}
+  projectileSpeed: 10
 --- !u!1 &2576059973566214098
 GameObject:
   m_ObjectHideFlags: 0

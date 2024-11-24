@@ -8,12 +8,12 @@ public abstract class Weapon : Item
     /// <summary>
     /// The damage inflicted by the weapon.
     /// </summary>
-    public float damage = 1f;
+    public int damage = 1;
 
     /// <summary>
     /// Fire the weapon.
     /// </summary>
-    public abstract void Fire();
+    public abstract void Fire(GameObject caller);
 
     /// <summary>
     /// Pick up the weapon.
@@ -27,4 +27,5 @@ public abstract class Weapon : Item
             playerController.PickUpWeapon(this);
         }
     }
+
 }

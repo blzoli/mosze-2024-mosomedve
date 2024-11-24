@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 /// @class Game
 /// @brief Manages the overall game state and progression through stages.
@@ -60,10 +61,14 @@ public class Game : MonoBehaviour
         PlayerController.ResetPlayer();
         // find all enemies by tag and destroy them
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
+        GameObject[] eprojectiles = GameObject.FindGameObjectsWithTag("EnemyProjectile");
+        GameObject[] pprojectiles = GameObject.FindGameObjectsWithTag("PlayerProjectile");
+
+        foreach (GameObject enemy in enemies.Concat(eprojectiles).Concat(pprojectiles))
         {
             Destroy(enemy);
         }
+        
         StartNextStage();
     }
 
