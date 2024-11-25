@@ -15,13 +15,14 @@ public class Bullet : MonoBehaviour
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.TakeDamage(damage);
-            Destroy(this.gameObject);
+            // only destroy in play mode to avoid test exception in edit mode
+            if (Application.isPlaying) Destroy(this.gameObject);
         }
         else if ((transform.gameObject.tag == "EnemyProjectile") && (collision.gameObject.tag == "Player"))
         {
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             player.TakeDamage(damage);
-            Destroy(this.gameObject);
+            if (Application.isPlaying) Destroy(this.gameObject);
         }
     }
 
