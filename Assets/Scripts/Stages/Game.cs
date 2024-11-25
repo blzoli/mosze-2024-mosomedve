@@ -23,6 +23,7 @@ public class Game : MonoBehaviour
     /// @brief Initializes the game and starts the first stage.
     void Start()
     {
+        Debug.Log("Game started.");
         StoryLoader.LoadStory(); // Load the story from the JSON file.
         stages = StoryLoader.CreateStages(); // Get the stages from the StoryLoader.
 
@@ -36,6 +37,7 @@ public class Game : MonoBehaviour
     /// If so, it activates the next stage based on the current stage ID.
     public void StartNextStage()
     {
+        if (stages == null) Start();
         if (CurrentStageID < stages.Length)
         {
             Stage currentStage = stages[CurrentStageID];
@@ -46,6 +48,7 @@ public class Game : MonoBehaviour
         else
         {
             Debug.Log("All stages completed.");
+            isOver = true;
         }
     }
 
@@ -56,7 +59,7 @@ public class Game : MonoBehaviour
     public void RestartStage()
     {
         isOver = false;
-        TogglePause();
+        TogglePause(false);
         CurrentStageID--;
         PlayerController.ResetPlayer();
         // find all enemies by tag and destroy them
@@ -76,9 +79,9 @@ public class Game : MonoBehaviour
     /// 
     /// This method pauses the game by setting the timescale to 0.
 
-    public static void TogglePause()
+    public static void TogglePause(bool pause)
     {
-        isPaused = !isPaused;
+        isPaused = pause;
         Time.timeScale = isPaused ? 0 : 1;
     }
 
@@ -90,7 +93,7 @@ public class Game : MonoBehaviour
     public static void GameOver()
     {
         isOver = true;
-        TogglePause(); 
+        TogglePause(true); 
     }
 
     /// @brief Handles the game update loop.
@@ -99,7 +102,7 @@ public class Game : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            TogglePause();
+            TogglePause(!isPaused);
         }
         if (isOver)
         {
@@ -113,7 +116,7 @@ public class Game : MonoBehaviour
     public static void ResetGameState()
     {
         isOver = false;
-        TogglePause();
+        TogglePause(false);
     }
 
 }

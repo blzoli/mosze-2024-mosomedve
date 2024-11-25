@@ -18,6 +18,8 @@ public class GameOverCondition
     /// </summary>
     public void GameOverConditionSimplePasses()
     {
+        Game.isOver = false;
+
         PlayerController player = new PlayerController();
 
         PlayerController.health = 5;
