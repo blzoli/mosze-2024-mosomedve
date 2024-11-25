@@ -31,6 +31,7 @@ public class GameOverCondition
         player.TakeDamage(3);
 
         Assert.AreEqual(Game.isOver, true);
+        Game.isOver = false;
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use

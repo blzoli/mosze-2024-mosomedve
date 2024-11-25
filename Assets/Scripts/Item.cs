@@ -24,7 +24,7 @@ public abstract class Item : MonoBehaviour
      * If the colliding object has the tag "Player", the `ApplyEffect()` method is called, and the item is destroyed.
      * @param collision The collision data.
      */
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
