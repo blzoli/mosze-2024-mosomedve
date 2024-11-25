@@ -90,7 +90,7 @@ public class Game : MonoBehaviour
     public static void GameOver()
     {
         isOver = true;
-        TogglePause();
+        TogglePause(); 
     }
 
     /// @brief Handles the game update loop.
@@ -108,6 +108,12 @@ public class Game : MonoBehaviour
                 RestartStage();
             }
         }
+    }
+
+    public static void ResetGameState()
+    {
+        isOver = false;
+        TogglePause();
     }
 
 }

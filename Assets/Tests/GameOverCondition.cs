@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 /// <summary>
 /// Represents the class for testing the game over condition.
@@ -31,7 +33,10 @@ public class GameOverCondition
         player.TakeDamage(3);
 
         Assert.AreEqual(Game.isOver, true);
-        Game.isOver = false;
+
+        // Reset static variables
+        Game.ResetGameState();
+
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
@@ -43,4 +48,5 @@ public class GameOverCondition
         // Use yield to skip a frame.
         yield return null;
     }
+
 }
