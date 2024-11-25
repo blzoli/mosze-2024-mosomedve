@@ -47,7 +47,7 @@ public class Asteroid : MonoBehaviour
     /// Checks for collisions with the player.
     /// </summary>
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

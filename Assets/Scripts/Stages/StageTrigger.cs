@@ -11,7 +11,7 @@ public class StageTrigger : MonoBehaviour
     ///
     /// This method is called when this GameObject collides with another collider.
     /// It attempts to call StartNextStage on the Game instance.
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         // Find the Game instance in the scene
         Game gameManager = FindObjectOfType<Game>();
