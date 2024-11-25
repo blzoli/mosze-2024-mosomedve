@@ -4,14 +4,33 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+/// <summary>
+/// Represents the class for testing the game over condition.
+/// </summary>
 public class GameOverCondition
 {
     // A Test behaves as an ordinary method
     [Test]
+    /// <summary>
+    /// Tests the game over condition. When the player's health reaches zero, the game should be over.
+    /// </summary>
     public void GameOverConditionSimplePasses()
     {
-        Game game = new Game();
+        PlayerController player = new PlayerController();
 
+        PlayerController.health = 5;
+
+        Assert.AreEqual(PlayerController.health, 5);
+        Assert.AreEqual(Game.isOver, false);
+
+        player.TakeDamage(3);
+
+        Assert.AreEqual(PlayerController.health, 2);
+        Assert.AreEqual(Game.isOver, false);
+
+        player.TakeDamage(3);
+
+        Assert.AreEqual(Game.isOver, true);
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
