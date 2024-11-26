@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     }
 
     // ellenseg mozgasa jatekos fele
-    void MoveTowardsPlayer()
+    public void MoveTowardsPlayer()
     {
         // check if player is not too close
         if (player != null)
