@@ -2,23 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Enemy class represents an enemy object in the game.
+/// 
+
 public class Enemy : MonoBehaviour
 {
-    // Alap attribútumok
-    public float speed = 3.0f;  // sebesseg
-    public int health = 5;    // hp
-    public int attackPower = 10; // attack
-    public float attackRange = 7.0f; // attack range
-    public float attackRate = 2.0f; // attack rate
+    
+    public float speed = 3.0f;  ///< The speed of the enemy.
+    public int health = 5;    ///< The health of the enemy.
+    public int attackPower = 10; ///< The attack power of the enemy.
+    public float attackRange = 7.0f; ///< The attack range of the enemy.
+    public float attackRate = 2.0f; ///< The attack rate of the enemy.
 
-    public Weapon weapon; // fegyver
+    public Weapon weapon; ///< The weapon equipped by the enemy.
 
-    private Transform player;    // jatekos pozicioja
-    private float lastAttackTime; // utolso tamadas ideje
-    private float cameraHalfHeight; // kamera magassaga
+    private Transform player;    ///< Reference to the player objects position.
+    private float lastAttackTime; ///< The time of the last attack.
+    private float cameraHalfHeight; ///< The half-height of the camera.
 
-    private float lastDirectionChange; // utolso iranyvaltas
-    private bool movingRight = true; // jobbra mozogjon-e
+    private float lastDirectionChange; ///< The time of the last direction change.
+    private bool movingRight = true; ///< Indicates whether the enemy is moving right.
 
     void Start()
     {
@@ -41,7 +45,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // ellenseg mozgasa jatekos fele
+    /// <summary>
+    /// Moves the enemy towards the player.
+    /// </summary>
     public void MoveTowardsPlayer()
     {
         // check if player is not too close
@@ -64,11 +70,11 @@ public class Enemy : MonoBehaviour
                     movingRight = !movingRight; // Toggle direction
                 }
 
-                if (movingRight && transform.position.x < cameraRightBound)
+                if (movingRight && transform.position.x < cameraRightBound && !IsAnotherEnemyNearby()) // Try to avoid other enemies
                 {
                     transform.position += Vector3.right * speed * Time.deltaTime;
                 }
-                else if (!movingRight && transform.position.x > cameraLeftBound)
+                else if (!movingRight && transform.position.x > cameraLeftBound && !IsAnotherEnemyNearby())
                 {
                     transform.position += Vector3.left * speed * Time.deltaTime;
                 }
@@ -76,7 +82,25 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // tamadas
+    /// <summary>
+    /// Checks if another enemy is nearby.
+    /// </summary>
+    private bool IsAnotherEnemyNearby()
+    {
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Enemy") && hitCollider.gameObject != gameObject)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Attacks the player, if the player is in range and the attack rate allows it.
+    /// </summary>
     void AttackPlayer()
     {
         // tamadas rate
@@ -91,7 +115,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // ellenseg sebzese
+    /// <summary>
+    /// Takes damage and checks if the enemy is dead.
+    /// </summary>
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -103,7 +129,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // ellenseg death
+    /// <summary>
+    /// Destroys the enemy object.
+    /// </summary>
     void Die()
     {
         Debug.Log("Enemy megsemmisült!");

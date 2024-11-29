@@ -67,10 +67,14 @@ public class Game : MonoBehaviour
         }
     }
 
+    /// @brief Spawns asteroids for a specified duration.
+
     public void SpawnAsteroids(float duration, Stage stage)
     {
         StartCoroutine(SpawnAsteroidsCoroutine(duration, stage));
     }
+
+    /// @brief Coroutine to spawn asteroids for a specified duration.
 
     private IEnumerator SpawnAsteroidsCoroutine(float duration, Stage stage)
     {
@@ -97,10 +101,14 @@ public class Game : MonoBehaviour
         stage.Complete();
     }
 
+    /// @brief Spawns a specified number of enemies.
+
     public void SpawnEnemies(int count, Stage stage)
     {
         StartCoroutine(SpawnEnemiesCoroutine(count, stage));
     }
+
+    /// @brief Coroutine to spawn a specified number of enemies.
 
     private IEnumerator SpawnEnemiesCoroutine(int count, Stage stage)
     {
@@ -118,6 +126,8 @@ public class Game : MonoBehaviour
 
         stage.Complete();
     }
+
+    /// @brief Gets a random position for spawning objects.
 
     private Vector2 GetRandomPosition()
     {
@@ -213,6 +223,8 @@ public class Game : MonoBehaviour
             }
         }
     }
+
+    /// @brief Resets the game state.
 
     public static void ResetGameState()
     {

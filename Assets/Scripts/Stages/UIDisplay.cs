@@ -70,11 +70,19 @@ public class GameUIDisplay : MonoBehaviour
         ShowGameOver();
     }
 
+    /// <summary>
+    /// Updates the start game start menu display based on the current game state.
+    /// </summary>
+
     public void UpdateStartGameMenu()
     {
         StartMenu.SetActive(!Game.isStarted);
         GameUI.SetActive(Game.isStarted);
     }
+
+    /// <summary>
+    /// Updates the start game complete menu display based on the current game state.
+    /// </summary>
 
     public void UpdateGameCompleteMenu()
     {         

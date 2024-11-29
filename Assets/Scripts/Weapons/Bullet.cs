@@ -6,13 +6,16 @@ public class Bullet : MonoBehaviour
 {
     public int damage; ///< Amount of damage the bullet inflicts.
 
+
+    // @brief Initializes the bullet and starts the despawn coroutine.
     private void Start()
     {
         // Start the despawn coroutine
         StartCoroutine(DespawnAfterTime(10f));
     }
 
-    // Coroutine to despawn the bullet after a specified time
+
+    // @brief Destroys the bullet after a specified time.
     private IEnumerator DespawnAfterTime(float time)
     {
         yield return new WaitForSeconds(time);

@@ -46,6 +46,8 @@ public class Stage
         }
     }
 
+    /// @brief Starts the stage and initializes any required elements.
+
     public void Start(Game game)
     {
         Debug.Log($"Starting Stage {stageID}: {story}");
@@ -62,6 +64,8 @@ public class Stage
             game.SpawnEnemies(stageID, this);
         }
     }
+
+    /// @brief Resets the stage to its initial state.
 
     public void Reset()
     {
