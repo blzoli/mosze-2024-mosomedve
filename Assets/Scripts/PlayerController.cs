@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     /// @brief The weapon equipped by the player.  
     public Weapon weapon;
     /// @brief The health of the player
-    public static int health = 3;
+    public static int health = 10;
 
 
     private Vector2 screenBounds; ///< The screen boundaries in world units.

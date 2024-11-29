@@ -1161,6 +1161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stages: []
+  asteroidPrefab: {fileID: 7557716511035924149, guid: fda29bcdb1985d1458f00095e65fffe5, type: 3}
+  enemyPrefab: {fileID: 8701018368274696850, guid: 9cf7835513ca3fd43b90941640217aa0, type: 3}
 --- !u!4 &1238230977
 Transform:
   m_ObjectHideFlags: 0
@@ -1199,7 +1201,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238230975}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9ceb6d409ff78e46ab37d09d4632dbe, type: 3}
   m_Name: 

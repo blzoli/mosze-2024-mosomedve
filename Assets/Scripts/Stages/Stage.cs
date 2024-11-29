@@ -18,16 +18,19 @@ public class Stage
     /// @brief Indicates whether the stage has been completed.
     private bool isCompleted; ///< Tracks the completion state of the stage.
 
+    /// @brief Reference to the Game object to progress stages.
+    private Game game;
+
     /// @brief Completes the stage and triggers any relevant events.
     ///
     /// This method is called when the stage objectives have been met.
-
     public void Complete()
     {
         if (!isCompleted)
         {
             isCompleted = true;
-            Debug.Log($"Stage {stageID} completed: {story}");
+            Debug.Log($"Stage {stageID} completed.");
+            game.StartNextStage();
         }
     }
 
@@ -39,7 +42,24 @@ public class Stage
     {
         if (!isCompleted)
         {
-            Debug.Log($"Stage {stageID} failed: {story}");
+            Debug.Log($"Stage {stageID} failed.");
+        }
+    }
+
+    public void Start(Game game)
+    {
+        Debug.Log($"Starting Stage {stageID}: {story}");
+        this.game = game;
+
+        if (stageID % 2 == 1)
+        {
+            // Odd stageID: Spawn asteroids for stageID * 5 seconds
+            game.SpawnAsteroids(stageID * 2, this);
+        }
+        else
+        {
+            // Even stageID: Spawn an amount of enemies equal to stageID
+            game.SpawnEnemies(stageID, this);
         }
     }
 }

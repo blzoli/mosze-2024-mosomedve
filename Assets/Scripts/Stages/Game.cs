@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,9 +17,14 @@ public class Game : MonoBehaviour
     /// @brief The ID of the currently active stage.
     public int CurrentStageID { get; private set; } ///< Current stage ID.
 
-
     public static bool isPaused = false; ///< Flag to indicate if the game is paused.
     public static bool isOver = false; ///< Flag to indicate if the game is over.
+
+    /// @brief Reference to the Asteroid prefab.
+    public GameObject asteroidPrefab;
+
+    /// @brief Reference to the Enemy prefab.
+    public GameObject enemyPrefab;
 
     /// @brief Initializes the game and starts the first stage.
     void Start()
@@ -41,7 +47,7 @@ public class Game : MonoBehaviour
         if (CurrentStageID < stages.Length)
         {
             Stage currentStage = stages[CurrentStageID];
-            Debug.Log($"Starting Stage {currentStage.stageID}: {currentStage.story}");
+            currentStage.Start(this); // Pass the Game instance
 
             CurrentStageID++;
         }
@@ -52,10 +58,56 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void SpawnAsteroids(float duration, Stage stage)
+    {
+        StartCoroutine(SpawnAsteroidsCoroutine(duration, stage));
+    }
+
+    private IEnumerator SpawnAsteroidsCoroutine(float duration, Stage stage)
+    {
+        float endTime = Time.time + duration;
+        while (Time.time < endTime)
+        {
+            Instantiate(asteroidPrefab, GetRandomPosition(), Quaternion.identity);
+            yield return new WaitForSeconds(1.0f); // Adjust spawn rate as needed
+        }
+
+        stage.Complete();
+    }
+
+    public void SpawnEnemies(int count, Stage stage)
+    {
+        StartCoroutine(SpawnEnemiesCoroutine(count, stage));
+    }
+
+    private IEnumerator SpawnEnemiesCoroutine(int count, Stage stage)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Instantiate(enemyPrefab, GetRandomPosition(), Quaternion.identity);
+            yield return null; // Wait for the next frame to continue spawning
+        }
+
+        // Wait until all enemies are destroyed
+        while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
+        {
+            yield return new WaitForSeconds(1.0f); // Check every second
+        }
+
+        stage.Complete();
+    }
+
+    private Vector3 GetRandomPosition()
+    {
+        // Implement logic to get a random position within the game area
+        float x = Random.Range(-10.0f, 10.0f); // Adjust range as needed
+        float y = Random.Range(-5.0f, 5.0f); // Adjust range as needed
+        return new Vector3(x, y, 0);
+    }
+
     /// @brief Restarts current stage.
     /// 
     /// This method restarts the current stage by resetting the stage ID and player attributes.
-    
     public void RestartStage()
     {
         isOver = false;
@@ -71,14 +123,13 @@ public class Game : MonoBehaviour
         {
             Destroy(enemy);
         }
-        
+
         StartNextStage();
     }
 
     /// @brief Pauses the game.
     /// 
     /// This method pauses the game by setting the timescale to 0.
-
     public static void TogglePause(bool pause)
     {
         isPaused = pause;
@@ -88,16 +139,13 @@ public class Game : MonoBehaviour
     /// @brief Game over method.
     /// 
     /// This method is called when the game is over. Pauses time and shows the game over screen.
-    /// 
-
     public static void GameOver()
     {
         isOver = true;
-        TogglePause(true); 
+        TogglePause(true);
     }
 
     /// @brief Handles the game update loop.
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -118,5 +166,4 @@ public class Game : MonoBehaviour
         isOver = false;
         TogglePause(false);
     }
-
 }
