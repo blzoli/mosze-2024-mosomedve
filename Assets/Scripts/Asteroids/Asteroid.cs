@@ -10,7 +10,7 @@ public class Asteroid : MonoBehaviour
     /// <summary>
     /// The speed of the asteroid.
     /// </summary>
-    public float speed = 0.5f;
+    public float speed = 10f;
 
     /// <summary>
     /// The maximum life of the asteroid in seconds.
@@ -30,7 +30,11 @@ public class Asteroid : MonoBehaviour
         {
             return;
         }
-        transform.Translate(direction * speed * 0.0004f);
+
+        // Move the asteroid
+        transform.Translate(direction * speed * Time.deltaTime);
+
+        // Destroy the asteroid after maxLife seconds
         Destroy(this.gameObject, maxLife);
     }
 
