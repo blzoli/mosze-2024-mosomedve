@@ -2,35 +2,35 @@
 "plot": [
 {
 "stageID": 1,
-"story": "Az aszteroidák között megvillan egy elhagyatott bolygó. A navigáció elkezd megbolondulni."
+"story": "A távoli jövőben, az emberiség már kiterjesztette uralmát a kozmosz valamennyi pontjára, rengeteg távoli, elérhetetlennek hitt bolygót kolonizált, és felfedezte az univerzum számos idegen kultúráját. A történet úgy kezdődik, hogy a Racoon Voyager leszáll egy elhagyatott bolygóra."
 },
 {
 "stageID": 2,
-"story": "Az ellenséges hajók elmenekülnek. A roncsok között egy új darabot talál a legénység."
+"story": "A legénység egy csapdákkal és Zephyriusokkal teli barlang bejáratába botlik. Az akadályok leküzdése után felfedezik a legendás Celestial Core-t, amit eddig csak mítosznak hittek."
 },
 {
 "stageID": 3,
-"story": "Egy érdekes üzenetet észlel a navigációs rendszer - 01000011 01000101 01001100 01000101 01010011 01010100 01001001 01000001 01001100 00100000 01000011 01001111 01010010 01000101 00100000 01010000 01001001 01001110 01000111. A legénység épp nekiállt kikódolni, de a radaron ellenfelek jelennek meg"
+"story": "A legénység megtudja, hogy a Core működéséhez hatalmas energia szükséges, és azt is hogy ami a birtokukba került az csak a Celestial Core egy darabja, az ötből."
 },
 {
 "stageID": 4,
-"story": "A menekülő flotta darabjait beszippantja egy titokzatos fénylő objektum. A legénység begyűjti – egy újabb Core darab."
+"story": "A Celestial Core minden darabja a galaxis legveszélyes potjain rejtőzik, rivális űrfrakciók őrzik. A legénység úgy dönt, hogy küldetésbe kezd, hogy visszaszerezze mind az öt darabot."
 },
 {
 "stageID": 5,
-"story": "A történet folytatása 1"
+"story": "Ahogy a legénység különböző bolygókra utazik, rivális frakciókkal és űrkalózokkal találkoznak, akik mind a Core erejéért versengenek. Minden frakció egyedi kihívásokat és morális dilemmákat állít elénk, amelyek nehéz döntések meghozatalára kényszerítik a legénységet."
 },
 {
 "stageID": 6,
-"story": " A történet folytatása 2"
+"story": "Útjuk során a legénység titkokat tár fel a Core alkotójával és a darabokat őrző frakciók valódi természetével kapcsolatban. A feszültség fokozódik a legénységen belül, ahogy a lojalitást próbára teszik, és a rejtett napirendek napvilágra kerülnek."
 },
 {
 "stageID": 7,
-"story": "Befejezés vol. 1"
+"story": "A legénység összegyűjti a Celestial Core darabjait, de aktiválása csatát indít el a frakciók között. A legénységnek el kell navigálnia ezt a káoszt, és el kell döntenie, hogy a Core erejét használja-e, megsemmisíti-e, vagy megtalálja a módját annak kivitelezésére, hogy biztonságban maradjon."
 },
 {
 "stageID": 8,
-"story": "Happy end?"
+"story": "A legénység elmélkedik utazásukon, a kialakult kötelékeken és tetteik következményein. A történet az Celestial Core és a mérlegben lógó galaxis sorsával zárul."
 }
 ]
 }
