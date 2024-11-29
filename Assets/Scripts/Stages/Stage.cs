@@ -30,7 +30,7 @@ public class Stage
         {
             isCompleted = true;
             Debug.Log($"Stage {stageID} completed.");
-            game.StartNextStage();
+            game.DisplayStory(story);
         }
     }
 

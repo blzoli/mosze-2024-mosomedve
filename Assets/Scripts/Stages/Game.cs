@@ -22,6 +22,8 @@ public class Game : MonoBehaviour
     public static bool isOver = false; ///< Flag to indicate if the game is over.
     public static bool isGameComplete = false; ///< Flag to indicate if the game is complete.
 
+    private bool isStoryDisplayed = false; ///< Flag to indicate if the story is displayed.
+
     public GameObject playerObject; ///< Reference to the player GameObject.
 
     /// @brief Reference to the Asteroid prefab.
@@ -29,6 +31,9 @@ public class Game : MonoBehaviour
 
     /// @brief Reference to the Enemy prefab.
     public GameObject enemyPrefab;
+
+    /// @brief Reference to the UI Text element for displaying the story.
+    public GameObject storyText;
 
     /// @brief Initializes the game and starts the first stage.
     void Start()
@@ -176,6 +181,15 @@ public class Game : MonoBehaviour
     /// @brief Handles the game update loop.
     void Update()
     {
+        if (isStoryDisplayed && Input.GetKeyDown(KeyCode.R))
+        {
+            storyText.SetActive(false);
+            isStoryDisplayed = false;
+            TogglePause(false);
+            StartNextStage();
+            return;
+        }
+
         if (!isStarted)
         {
         if (Input.GetKey(KeyCode.R))
@@ -205,4 +219,21 @@ public class Game : MonoBehaviour
         isOver = false;
         TogglePause(false);
     }
+
+    /// @brief Displays the story text and pauses the game.
+    ///
+    /// This method is called when a stage is completed to show the story text
+    /// and pause the game until the player presses R to continue.
+    public void DisplayStory(string story)
+    {
+        isStoryDisplayed = true;
+        storyText.GetComponent<TMPro.TextMeshProUGUI>().text = story;
+        storyText.SetActive(true);
+        if (isGameComplete)
+        {
+            StartNextStage();
+        }
+        else TogglePause(true);
+    }
+
 }
