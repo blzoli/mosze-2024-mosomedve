@@ -7,10 +7,6 @@ using static UnityEditor.Rendering.CameraUI;
 /// </summary>
 public class RocketLauncher : Weapon
 {
-    /// <summary>
-    /// Fires the rocket launcher.
-    /// </summary>
-    /// 
     public GameObject projectilePrefab;
     public float projectileSpeed = 3f;
 
@@ -20,6 +16,10 @@ public class RocketLauncher : Weapon
     {
         this.damage = 2;
     }
+    /// <summary>
+    /// Fires the rocket launcher.
+    /// </summary>
+    /// 
 
     public override void Fire(GameObject caller)
     {
