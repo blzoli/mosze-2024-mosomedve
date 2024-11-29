@@ -15,11 +15,14 @@ public class Enemy : MonoBehaviour
 
     private Transform player;    // jatekos pozicioja
     private float lastAttackTime; // utolso tamadas ideje
+    private float cameraHalfHeight; // kamera magassaga
 
     void Start()
     {
         // jatekos player taggel
         player = GameObject.FindWithTag("Player").transform;
+        // kamera magassaganak felet vertikalisan beallitjuk
+        cameraHalfHeight = Camera.main.transform.position.y;
     }
 
     // mozgas es tamadas
@@ -41,7 +44,7 @@ public class Enemy : MonoBehaviour
         // check if player is not too close
         if (player != null)
         {
-            if (Vector3.Distance(transform.position, player.position) > attackRange)
+            if ((Vector3.Distance(transform.position, player.position) > attackRange) && transform.position.y > cameraHalfHeight)
             {
                 Vector3 direction = (player.position - transform.position).normalized;
                 transform.position += direction * speed * Time.deltaTime; 

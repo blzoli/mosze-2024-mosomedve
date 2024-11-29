@@ -110,12 +110,13 @@ public class Game : MonoBehaviour
         stage.Complete();
     }
 
-    private Vector3 GetRandomPosition()
+    private Vector2 GetRandomPosition()
     {
-        // Implement logic to get a random position within the game area
-        float x = Random.Range(-10.0f, 10.0f); // Adjust range as needed
-        float y = Random.Range(-5.0f, 5.0f); // Adjust range as needed
-        return new Vector3(x, y, 0);
+        Vector2 spawnPosition = new Vector2(
+            Random.Range(-5, 5), // veletlenszeru x
+            6 // fix y a kepernyo tetejen
+        );
+        return spawnPosition;
     }
 
     /// @brief Restarts current stage.
