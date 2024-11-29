@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     /// @brief The weapon equipped by the player.  
     public Weapon weapon;
     /// @brief The health of the player
-    public static int health = 10;
+    public static int health = 5;
 
 
     private Vector2 screenBounds; ///< The screen boundaries in world units.
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
     public static void ResetPlayer()
     {
         // Reset the player's health
-        health = 3;
+        health = 5;
     }
 
 

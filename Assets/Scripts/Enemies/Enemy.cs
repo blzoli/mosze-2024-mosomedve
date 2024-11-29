@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
                 float cameraRightBound = Camera.main.transform.position.x + (Camera.main.orthographicSize * Camera.main.aspect);
 
                 // Randomly decide to move left or right, but not too often
-                if (Random.Range(0, 100) < 50 && Time.time - lastDirectionChange > 1.0f)
+                if (Random.Range(0, 100) < 50 && Time.time - lastDirectionChange > 1.0f + Random.Range(0f, 1.0f))
                 {
                     lastDirectionChange = Time.time;
                     movingRight = !movingRight; // Toggle direction

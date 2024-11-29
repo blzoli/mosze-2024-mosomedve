@@ -20,6 +20,9 @@ public class Game : MonoBehaviour
     public static bool isStarted = false; ///< Flag to indicate if the game has started.
     public static bool isPaused = false; ///< Flag to indicate if the game is paused.
     public static bool isOver = false; ///< Flag to indicate if the game is over.
+    public static bool isGameComplete = false; ///< Flag to indicate if the game is complete.
+
+    public GameObject playerObject; ///< Reference to the player GameObject.
 
     /// @brief Reference to the Asteroid prefab.
     public GameObject asteroidPrefab;
@@ -55,6 +58,7 @@ public class Game : MonoBehaviour
         {
             Debug.Log("All stages completed.");
             isOver = true;
+            isGameComplete = true;
         }
     }
 
@@ -138,6 +142,16 @@ public class Game : MonoBehaviour
             Destroy(enemy);
         }
 
+        if (isGameComplete)
+        {
+            isGameComplete = false;
+            CurrentStageID = 0;
+            for (int i = 0; i < stages.Length; i++)
+            {
+                stages[i].Reset();
+            }
+        }
+
         StartNextStage();
     }
 
@@ -167,6 +181,9 @@ public class Game : MonoBehaviour
         if (Input.GetKey(KeyCode.R))
             {
                 StartNextStage(); // Start the first stage.
+                
+                playerObject.GetComponent<PlayerController>().enabled = true;
+
                 isStarted = true;
             }
         }

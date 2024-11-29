@@ -62,4 +62,9 @@ public class Stage
             game.SpawnEnemies(stageID, this);
         }
     }
+
+    public void Reset()
+    {
+        isCompleted = false;
+    }
 }
