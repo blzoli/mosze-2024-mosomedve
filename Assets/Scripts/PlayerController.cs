@@ -10,9 +10,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     /// @brief The weapon equipped by the player.  
     public Weapon weapon;
-    /// @brief The health of the player
-    public static int health = 3;
-
+    /// @brief The health of the player.
+    public static int health = 5;
 
     private Vector2 screenBounds; ///< The screen boundaries in world units.
     private float playerWidth;    ///< The half-width of the player sprite.
@@ -81,6 +80,9 @@ public class PlayerController : MonoBehaviour
         transform.position = clampedPosition;
     }
 
+    /**
+     * @brief Fires the player's weapon when the space key is pressed.
+     */
     void Shoot()
     {
         void FireWeapon()
@@ -100,12 +102,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /**
+     * @brief Picks up a new weapon and equips it.
+     * @param weapon The weapon to pick up.
+     */
     public void PickUpWeapon(Weapon weapon)
     {
         // Equip the new weapon
         this.weapon = weapon;
     }
 
+    /**
+     * @brief Damages the player by a specified amount.
+     * @param damage The amount of damage to inflict.
+     */
     public void TakeDamage(int damage)
     {
         // Reduce health by the damage amount
@@ -120,11 +130,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /**
+     * @brief Resets the player's health to the default value.
+     */
     public static void ResetPlayer()
     {
         // Reset the player's health
-        health = 3;
+        health = 5;
     }
-
-
 }

@@ -14,6 +14,9 @@ public class GameUIDisplay : MonoBehaviour
     public PlayerController player; ///< Reference to your PlayerController class instance.
     public GameObject pauseMenu; ///< Reference to the pause menu.
     public GameObject gameOverMenu; ///< Reference to the game over menu.
+    public GameObject StartMenu;  ///< Reference to the start menu.
+    public GameObject GameUI; ///< Reference to the game UI.
+    public GameObject gameCompleteMenu; ///< Reference to the game complete menu.
 
     /// <summary>
     /// Updates the health display based on the current health value.
@@ -55,7 +58,7 @@ public class GameUIDisplay : MonoBehaviour
     /// 
     public void ShowGameOver()
     {
-        gameOverMenu.SetActive(Game.isOver);
+        if (!Game.isGameComplete) gameOverMenu.SetActive(Game.isOver);
     }
 
 
@@ -65,6 +68,25 @@ public class GameUIDisplay : MonoBehaviour
         UpdateStage(game.CurrentStageID);
         UpdatePauseMenu();
         ShowGameOver();
+    }
+
+    /// <summary>
+    /// Updates the start game start menu display based on the current game state.
+    /// </summary>
+
+    public void UpdateStartGameMenu()
+    {
+        StartMenu.SetActive(!Game.isStarted);
+        GameUI.SetActive(Game.isStarted);
+    }
+
+    /// <summary>
+    /// Updates the start game complete menu display based on the current game state.
+    /// </summary>
+
+    public void UpdateGameCompleteMenu()
+    {         
+        gameCompleteMenu.SetActive(Game.isGameComplete);
     }
 
     private void Update()
@@ -80,6 +102,8 @@ public class GameUIDisplay : MonoBehaviour
         }
 
         UpdatePauseMenu();
+        UpdateStartGameMenu();
         ShowGameOver();
+        UpdateGameCompleteMenu();
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,9 +17,23 @@ public class Game : MonoBehaviour
     /// @brief The ID of the currently active stage.
     public int CurrentStageID { get; private set; } ///< Current stage ID.
 
-
+    public static bool isStarted = false; ///< Flag to indicate if the game has started.
     public static bool isPaused = false; ///< Flag to indicate if the game is paused.
     public static bool isOver = false; ///< Flag to indicate if the game is over.
+    public static bool isGameComplete = false; ///< Flag to indicate if the game is complete.
+
+    private bool isStoryDisplayed = false; ///< Flag to indicate if the story is displayed.
+
+    public GameObject playerObject; ///< Reference to the player GameObject.
+
+    /// @brief Reference to the Asteroid prefab.
+    public GameObject asteroidPrefab;
+
+    /// @brief Reference to the Enemy prefab.
+    public GameObject enemyPrefab;
+
+    /// @brief Reference to the UI Text element for displaying the story.
+    public GameObject storyText;
 
     /// @brief Initializes the game and starts the first stage.
     void Start()
@@ -28,7 +43,6 @@ public class Game : MonoBehaviour
         stages = StoryLoader.CreateStages(); // Get the stages from the StoryLoader.
 
         CurrentStageID = 0; // Initialize to the first stage.
-        StartNextStage(); // Start the first stage.
     }
 
     /// @brief Starts the next stage in the game.
@@ -41,7 +55,7 @@ public class Game : MonoBehaviour
         if (CurrentStageID < stages.Length)
         {
             Stage currentStage = stages[CurrentStageID];
-            Debug.Log($"Starting Stage {currentStage.stageID}: {currentStage.story}");
+            currentStage.Start(this); // Pass the Game instance
 
             CurrentStageID++;
         }
@@ -49,13 +63,84 @@ public class Game : MonoBehaviour
         {
             Debug.Log("All stages completed.");
             isOver = true;
+            isGameComplete = true;
         }
+    }
+
+    /// @brief Spawns asteroids for a specified duration.
+
+    public void SpawnAsteroids(float duration, Stage stage)
+    {
+        StartCoroutine(SpawnAsteroidsCoroutine(duration, stage));
+    }
+
+    /// @brief Coroutine to spawn asteroids for a specified duration.
+
+    private IEnumerator SpawnAsteroidsCoroutine(float duration, Stage stage)
+    {
+        float endTime = Time.time + duration;
+
+        AsteroidSpawner spawner = GetComponentInParent<AsteroidSpawner>();
+        if (spawner != null)
+        {
+            spawner.enabled = true; // Enable the AsteroidSpawner script
+        }
+
+        while (Time.time < endTime)
+        {
+            yield return new WaitForSeconds(1.0f); // Adjust spawn rate as needed 
+        }
+
+        if (spawner != null)
+        {
+            spawner.enabled = false; // Disable the AsteroidSpawner script
+        }
+
+        yield return new WaitForSeconds(2.0f); // Wait for any remaining asteroids to clear
+
+        stage.Complete();
+    }
+
+    /// @brief Spawns a specified number of enemies.
+
+    public void SpawnEnemies(int count, Stage stage)
+    {
+        StartCoroutine(SpawnEnemiesCoroutine(count, stage));
+    }
+
+    /// @brief Coroutine to spawn a specified number of enemies.
+
+    private IEnumerator SpawnEnemiesCoroutine(int count, Stage stage)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Instantiate(enemyPrefab, GetRandomPosition(), Quaternion.identity);
+            yield return null; // Wait for the next frame to continue spawning
+        }
+
+        // Wait until all enemies are destroyed
+        while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
+        {
+            yield return new WaitForSeconds(1.0f); // Check every second
+        }
+
+        stage.Complete();
+    }
+
+    /// @brief Gets a random position for spawning objects.
+
+    private Vector2 GetRandomPosition()
+    {
+        Vector2 spawnPosition = new Vector2(
+            Random.Range(-5, 5), // veletlenszeru x
+            6 // fix y a kepernyo tetejen
+        );
+        return spawnPosition;
     }
 
     /// @brief Restarts current stage.
     /// 
     /// This method restarts the current stage by resetting the stage ID and player attributes.
-    
     public void RestartStage()
     {
         isOver = false;
@@ -71,14 +156,23 @@ public class Game : MonoBehaviour
         {
             Destroy(enemy);
         }
-        
+
+        if (isGameComplete)
+        {
+            isGameComplete = false;
+            CurrentStageID = 0;
+            for (int i = 0; i < stages.Length; i++)
+            {
+                stages[i].Reset();
+            }
+        }
+
         StartNextStage();
     }
 
     /// @brief Pauses the game.
     /// 
     /// This method pauses the game by setting the timescale to 0.
-
     public static void TogglePause(bool pause)
     {
         isPaused = pause;
@@ -88,19 +182,36 @@ public class Game : MonoBehaviour
     /// @brief Game over method.
     /// 
     /// This method is called when the game is over. Pauses time and shows the game over screen.
-    /// 
-
     public static void GameOver()
     {
         isOver = true;
-        TogglePause(true); 
+        TogglePause(true);
     }
 
     /// @brief Handles the game update loop.
-
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (isStoryDisplayed && Input.GetKeyDown(KeyCode.R))
+        {
+            storyText.SetActive(false);
+            isStoryDisplayed = false;
+            TogglePause(false);
+            StartNextStage();
+            return;
+        }
+
+        if (!isStarted)
+        {
+        if (Input.GetKey(KeyCode.R))
+            {
+                StartNextStage(); // Start the first stage.
+                
+                playerObject.GetComponent<PlayerController>().enabled = true;
+
+                isStarted = true;
+            }
+        }
+        if (isStarted && Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause(!isPaused);
         }
@@ -113,10 +224,28 @@ public class Game : MonoBehaviour
         }
     }
 
+    /// @brief Resets the game state.
+
     public static void ResetGameState()
     {
         isOver = false;
         TogglePause(false);
+    }
+
+    /// @brief Displays the story text and pauses the game.
+    ///
+    /// This method is called when a stage is completed to show the story text
+    /// and pause the game until the player presses R to continue.
+    public void DisplayStory(string story)
+    {
+        isStoryDisplayed = true;
+        storyText.GetComponent<TMPro.TextMeshProUGUI>().text = story;
+        storyText.SetActive(true);
+        if (isGameComplete)
+        {
+            StartNextStage();
+        }
+        else TogglePause(true);
     }
 
 }
