@@ -46,5 +46,7 @@ Teszt esetek elérthetőek (Edit mode)
  - Szebb UI
  - Bossok
  - Újabb spriteok a még nem textúrált prefabokra
+ - Score system
+
  
  Amennyiben a Unity húzza be a Scenet, ez az Assets/Scenes mappában elérhető, és az editorba húzható a bal oldalon (korábban gondot okozott)
