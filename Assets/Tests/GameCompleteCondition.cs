@@ -13,6 +13,12 @@ public class GameCompleteCondition
         Game.isOver = false;
         GameObject gameObj = new GameObject();
         Game game = gameObj.AddComponent<Game>();
+        // Add asteroid and enemy prefabs
+        GameObject asteroidPrefab = new GameObject("Asteroid");
+        GameObject enemyPrefab = new GameObject("Enemy");
+        game.asteroidPrefab = asteroidPrefab;
+        game.enemyPrefab = enemyPrefab;
+
 
         Assert.IsTrue(!Game.isOver);
 
