@@ -17,6 +17,7 @@ public class Game : MonoBehaviour
     /// @brief The ID of the currently active stage.
     public int CurrentStageID { get; private set; } ///< Current stage ID.
 
+    public static bool isStarted = false; ///< Flag to indicate if the game has started.
     public static bool isPaused = false; ///< Flag to indicate if the game is paused.
     public static bool isOver = false; ///< Flag to indicate if the game is over.
 
@@ -34,7 +35,6 @@ public class Game : MonoBehaviour
         stages = StoryLoader.CreateStages(); // Get the stages from the StoryLoader.
 
         CurrentStageID = 0; // Initialize to the first stage.
-        StartNextStage(); // Start the first stage.
     }
 
     /// @brief Starts the next stage in the game.
@@ -162,7 +162,15 @@ public class Game : MonoBehaviour
     /// @brief Handles the game update loop.
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!isStarted)
+        {
+        if (Input.GetKey(KeyCode.R))
+            {
+                StartNextStage(); // Start the first stage.
+                isStarted = true;
+            }
+        }
+        if (isStarted && Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause(!isPaused);
         }

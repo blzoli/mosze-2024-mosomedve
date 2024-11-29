@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
     private float lastAttackTime; // utolso tamadas ideje
     private float cameraHalfHeight; // kamera magassaga
 
+    private float lastDirectionChange; // utolso iranyvaltas
+    private bool movingRight = true; // jobbra mozogjon-e
+
     void Start()
     {
         // jatekos player taggel
@@ -44,24 +47,34 @@ public class Enemy : MonoBehaviour
         // check if player is not too close
         if (player != null)
         {
-            if ((Vector3.Distance(transform.position, player.position) > attackRange) && transform.position.y > cameraHalfHeight)
+            if (transform.position.y > cameraHalfHeight)
             {
                 Vector3 direction = (player.position - transform.position).normalized;
-                transform.position += direction * speed * Time.deltaTime; 
+                transform.position += direction * speed * Time.deltaTime;
             }
             else // ha mar eleg kozel van, jobbra balra mozogjon
             {
-                if (Time.time % 2 < 1)
+                float cameraLeftBound = Camera.main.transform.position.x - (Camera.main.orthographicSize * Camera.main.aspect);
+                float cameraRightBound = Camera.main.transform.position.x + (Camera.main.orthographicSize * Camera.main.aspect);
+
+                // Randomly decide to move left or right, but not too often
+                if (Random.Range(0, 100) < 50 && Time.time - lastDirectionChange > 1.0f)
+                {
+                    lastDirectionChange = Time.time;
+                    movingRight = !movingRight; // Toggle direction
+                }
+
+                if (movingRight && transform.position.x < cameraRightBound)
                 {
                     transform.position += Vector3.right * speed * Time.deltaTime;
                 }
-                else
+                else if (!movingRight && transform.position.x > cameraLeftBound)
                 {
                     transform.position += Vector3.left * speed * Time.deltaTime;
                 }
             }
         }
-    }   
+    }
 
     // tamadas
     void AttackPlayer()

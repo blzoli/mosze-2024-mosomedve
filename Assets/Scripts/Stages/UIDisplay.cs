@@ -14,6 +14,7 @@ public class GameUIDisplay : MonoBehaviour
     public PlayerController player; ///< Reference to your PlayerController class instance.
     public GameObject pauseMenu; ///< Reference to the pause menu.
     public GameObject gameOverMenu; ///< Reference to the game over menu.
+    public GameObject StartMenu;
 
     /// <summary>
     /// Updates the health display based on the current health value.
@@ -67,6 +68,11 @@ public class GameUIDisplay : MonoBehaviour
         ShowGameOver();
     }
 
+    public void UpdateStartGameMenu()
+    {
+        StartMenu.SetActive(!Game.isStarted);
+    }
+
     private void Update()
     {
         if (PlayerController.health != healthPanel.childCount)
@@ -80,6 +86,7 @@ public class GameUIDisplay : MonoBehaviour
         }
 
         UpdatePauseMenu();
+        UpdateStartGameMenu();
         ShowGameOver();
     }
 }
