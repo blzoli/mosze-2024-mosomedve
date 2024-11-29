@@ -1,6 +1,5 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using static UnityEditor.Rendering.CameraUI;
 
 /// <summary>
 /// Represents a Rocket Launcher weapon.

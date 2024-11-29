@@ -1,6 +1,9 @@
 # RACCOON VOYAGER
 Mosómedve csapat Unity játéka
 
+Irányítás: WASD mozgáshoz, Esc megállításhoz (pause), R a folytatáshoz 
+
+
 Az eredeti specifikációban megnevezett követelmények és használati esetek állapota:
 
 ### Jelenleg megvalósított követelmények:
