@@ -54,7 +54,7 @@ public class Stage
         if (stageID % 2 == 1)
         {
             // Odd stageID: Spawn asteroids for stageID * 5 seconds
-            game.SpawnAsteroids(stageID * 2, this);
+            game.SpawnAsteroids(stageID * 3, this);
         }
         else
         {

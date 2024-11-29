@@ -66,11 +66,24 @@ public class Game : MonoBehaviour
     private IEnumerator SpawnAsteroidsCoroutine(float duration, Stage stage)
     {
         float endTime = Time.time + duration;
+
+        AsteroidSpawner spawner = GetComponentInParent<AsteroidSpawner>();
+        if (spawner != null)
+        {
+            spawner.enabled = true; // Enable the AsteroidSpawner script
+        }
+
         while (Time.time < endTime)
         {
-            Instantiate(asteroidPrefab, GetRandomPosition(), Quaternion.identity);
-            yield return new WaitForSeconds(1.0f); // Adjust spawn rate as needed
+            yield return new WaitForSeconds(1.0f); // Adjust spawn rate as needed 
         }
+
+        if (spawner != null)
+        {
+            spawner.enabled = false; // Disable the AsteroidSpawner script
+        }
+
+        yield return new WaitForSeconds(2.0f); // Wait for any remaining asteroids to clear
 
         stage.Complete();
     }
