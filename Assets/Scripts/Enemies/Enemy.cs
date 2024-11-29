@@ -70,11 +70,11 @@ public class Enemy : MonoBehaviour
                     movingRight = !movingRight; // Toggle direction
                 }
 
-                if (movingRight && transform.position.x < cameraRightBound && !IsAnotherEnemyNearby()) // Try to avoid other enemies
+                if (movingRight && transform.position.x < cameraRightBound ) // Try to avoid other enemies
                 {
                     transform.position += Vector3.right * speed * Time.deltaTime;
                 }
-                else if (!movingRight && transform.position.x > cameraLeftBound && !IsAnotherEnemyNearby())
+                else if (!movingRight && transform.position.x > cameraLeftBound) // TODO check nearby positions without paralysis
                 {
                     transform.position += Vector3.left * speed * Time.deltaTime;
                 }
