@@ -17,6 +17,7 @@ public class GameUIDisplay : MonoBehaviour
     public GameObject StartMenu;  ///< Reference to the start menu.
     public GameObject GameUI; ///< Reference to the game UI.
     public GameObject gameCompleteMenu; ///< Reference to the game complete menu.
+    public TextMeshProUGUI scoreText; ///< Text to display the player's score.
 
     /// <summary>
     /// Updates the health display based on the current health value.
@@ -33,6 +34,11 @@ public class GameUIDisplay : MonoBehaviour
         {
             Instantiate(heartPrefab, healthPanel);
         }
+    }
+
+    public void UpdateScore(int score)
+    {
+        scoreText.text = "Score: " + score;
     }
 
     /// <summary>
@@ -101,6 +107,7 @@ public class GameUIDisplay : MonoBehaviour
             UpdateStage(game.CurrentStageID);
         }
 
+        UpdateScore(Game.score);
         UpdatePauseMenu();
         UpdateStartGameMenu();
         ShowGameOver();

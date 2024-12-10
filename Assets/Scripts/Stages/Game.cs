@@ -25,6 +25,8 @@ public class Game : MonoBehaviour
 
     public static bool isStoryDisplayed = false; ///< Flag to indicate if the story is displayed.
 
+    public static int score = 0; ///< The player's score.
+
     public GameObject playerObject; ///< Reference to the player GameObject.
 
     /// @brief Reference to the Asteroid prefab.
@@ -35,6 +37,12 @@ public class Game : MonoBehaviour
 
     /// @brief Reference to the UI Text element for displaying the story.
     public GameObject storyText;
+
+    /// @brief Adds points to the player's score.
+    public static void AddScore(int points)
+    {
+        score += points;
+    }
 
     /// @brief Initializes the game and starts the first stage.
     void Start()
