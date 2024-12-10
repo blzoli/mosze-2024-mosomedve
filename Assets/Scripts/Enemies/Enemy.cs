@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
         // check if player is not too close
         if (player != null)
         {
-            if (transform.position.y > cameraHalfHeight)
+            if (transform.position.y > cameraHalfHeight+2)
             {
                 Vector3 direction = (player.position - transform.position).normalized;
                 transform.position += direction * speed * Time.deltaTime;
