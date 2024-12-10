@@ -19,7 +19,7 @@ public class Leaderboard
 public class ScoreLoader : MonoBehaviour
 {
     private static string filePath = "Assets/Resources/scores.json";
-    private static Leaderboard leaderboard;
+    public static Leaderboard leaderboard;
 
     void Start()
     {

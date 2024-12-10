@@ -9,10 +9,25 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+    public GameObject MainMenuPanel;
+    public GameObject LeaderboardPanel;
+
     /// Load the game scene.
     public void PlayGame()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void ShowLeaderBoard() 
+    { 
+        LeaderboardPanel.SetActive(true);
+        MainMenuPanel.SetActive(false);
+    }
+
+    public void HideLeaderBoard()
+    {
+        LeaderboardPanel.SetActive(false);
+        MainMenuPanel.SetActive(true);
     }
 
     /// Quit the application.
