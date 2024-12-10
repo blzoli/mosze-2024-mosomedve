@@ -18,8 +18,8 @@ public class Leaderboard
 
 public class ScoreLoader : MonoBehaviour
 {
-    private string filePath = "Assets/Resources/scores.json";
-    private Leaderboard leaderboard;
+    private static string filePath = "Assets/Resources/scores.json";
+    private static Leaderboard leaderboard;
 
     void Start()
     {
@@ -48,7 +48,7 @@ public class ScoreLoader : MonoBehaviour
         Debug.Log("Empty scores file created!");
     }
 
-    public bool CheckIfScoreHighEnough(int score)
+    public static bool CheckIfScoreHighEnough(int score)
     {
         // If there are less than 10 scores, it's always high enough to be added
         if (leaderboard.leaderboard.Count < 10)
@@ -61,7 +61,7 @@ public class ScoreLoader : MonoBehaviour
         return score > lowestScore;
     }
 
-    public void AddScore(string name, int score)
+    public static void AddScore(string name, int score)
     {
         // Check if the score qualifies for the leaderboard
         if (CheckIfScoreHighEnough(score))

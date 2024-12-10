@@ -73,6 +73,10 @@ public class Game : MonoBehaviour
             Debug.Log("All stages completed.");
             isOver = true;
             isGameComplete = true;
+
+            // save score
+            ScoreLoader.AddScore("Player", score);
+
         }
     }
 
