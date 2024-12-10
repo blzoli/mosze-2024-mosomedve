@@ -23,7 +23,7 @@ public class Game : MonoBehaviour
     public static bool isOver = false; ///< Flag to indicate if the game is over.
     public static bool isGameComplete = false; ///< Flag to indicate if the game is complete.
 
-    private bool isStoryDisplayed = false; ///< Flag to indicate if the story is displayed.
+    public static bool isStoryDisplayed = false; ///< Flag to indicate if the story is displayed.
 
     public GameObject playerObject; ///< Reference to the player GameObject.
 
@@ -218,7 +218,7 @@ public class Game : MonoBehaviour
         {
             TogglePause(!isPaused);
         }
-        if (!isGameComplete && isPaused)
+        if (!isGameComplete && isPaused && !isStoryDisplayed)
         { 
             if (Input.GetKeyDown(KeyCode.R))
             {

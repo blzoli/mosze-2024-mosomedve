@@ -49,7 +49,7 @@ public class GameUIDisplay : MonoBehaviour
     /// </summary>
     public void UpdatePauseMenu()
     {
-        pauseMenu.SetActive(Game.isPaused && !Game.isOver);
+        pauseMenu.SetActive(Game.isPaused && !Game.isOver && !Game.isStoryDisplayed);
     }
 
     /// <summary>
