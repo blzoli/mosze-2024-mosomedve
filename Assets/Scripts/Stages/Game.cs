@@ -152,6 +152,7 @@ public class Game : MonoBehaviour
     /// This method restarts the current stage by resetting the stage ID and player attributes.
     public void RestartStage()
     {
+        score = 0;
         isOver = false;
         TogglePause(false);
         CurrentStageID--;
@@ -230,6 +231,7 @@ public class Game : MonoBehaviour
         { 
             if (Input.GetKeyDown(KeyCode.R))
             {
+                score = 0;
                 TogglePause(!isPaused);
                 CurrentStageID = 0;
                 for (int i = 0; i < stages.Length; i++)
