@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 /// @class Game
 /// @brief Manages the overall game state and progression through stages.
@@ -165,9 +166,11 @@ public class Game : MonoBehaviour
             {
                 stages[i].Reset();
             }
-        }
+            isStarted = false;
+            SceneManager.LoadScene("MenuScene");
 
-        StartNextStage();
+
+        } else StartNextStage();
     }
 
     /// @brief Pauses the game.
@@ -214,6 +217,24 @@ public class Game : MonoBehaviour
         if (isStarted && Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause(!isPaused);
+        }
+        if (!isGameComplete && isPaused)
+        { 
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                TogglePause(!isPaused);
+                CurrentStageID = 0;
+                for (int i = 0; i < stages.Length; i++)
+                {
+                    stages[i].Reset();
+                }
+                isStarted = false;
+                SceneManager.LoadScene("MenuScene");
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Application.Quit();
+            }
         }
         if (isOver)
         {
