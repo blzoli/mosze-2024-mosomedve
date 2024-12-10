@@ -24,8 +24,12 @@ public class Enemy : MonoBehaviour
     private float lastDirectionChange; ///< The time of the last direction change.
     private bool movingRight = true; ///< Indicates whether the enemy is moving right.
 
+    
+    private float spawnTime; ///< Spawn time for score calculation.
+
     void Start()
     {
+        spawnTime = Time.time;
         // jatekos player taggel
         player = GameObject.FindWithTag("Player").transform;
         // kamera magassaganak felet vertikalisan beallitjuk
@@ -136,5 +140,18 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Enemy megsemmisült!");
         Destroy(gameObject); // ellenseg eltavolitasa
+    }
+
+    /// <summary>
+    /// Add score when destroyed based on the time difference.
+    /// </summary>
+    private void OnDestroy()
+    {
+        if (!Game.isOver && !Game.isGameComplete && !Game.isPaused)
+        {
+            float timeDifference = Time.time - spawnTime;
+            int score = Mathf.Clamp(51 - (int)(timeDifference * 2), 1, 50); // Deduct a point for every half a second
+            Game.AddScore(score);
+        }
     }
 }

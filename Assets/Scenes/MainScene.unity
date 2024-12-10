@@ -1969,6 +1969,7 @@ GameObject:
   - component: {fileID: 1238230978}
   - component: {fileID: 1238230979}
   - component: {fileID: 1238230980}
+  - component: {fileID: 1238230981}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -2063,6 +2064,18 @@ MonoBehaviour:
   GameUI: {fileID: 864564203}
   gameCompleteMenu: {fileID: 2014499546}
   scoreText: {fileID: 262919905}
+--- !u!114 &1238230981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238230975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d1b38ddb7db9074c8c00e022b11e5a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1388285740
 PrefabInstance:
   m_ObjectHideFlags: 0
