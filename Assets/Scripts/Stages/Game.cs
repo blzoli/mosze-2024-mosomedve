@@ -25,6 +25,8 @@ public class Game : MonoBehaviour
 
     public static bool isStoryDisplayed = false; ///< Flag to indicate if the story is displayed.
 
+    public static int score = 0; ///< The player's score.
+
     public GameObject playerObject; ///< Reference to the player GameObject.
 
     /// @brief Reference to the Asteroid prefab.
@@ -35,6 +37,12 @@ public class Game : MonoBehaviour
 
     /// @brief Reference to the UI Text element for displaying the story.
     public GameObject storyText;
+
+    /// @brief Adds points to the player's score.
+    public static void AddScore(int points)
+    {
+        score += points;
+    }
 
     /// @brief Initializes the game and starts the first stage.
     void Start()
@@ -65,6 +73,10 @@ public class Game : MonoBehaviour
             Debug.Log("All stages completed.");
             isOver = true;
             isGameComplete = true;
+
+            // save score
+            ScoreLoader.AddScore("Player", score);
+
         }
     }
 
@@ -144,6 +156,7 @@ public class Game : MonoBehaviour
     /// This method restarts the current stage by resetting the stage ID and player attributes.
     public void RestartStage()
     {
+        score = 0;
         isOver = false;
         TogglePause(false);
         CurrentStageID--;
@@ -222,6 +235,7 @@ public class Game : MonoBehaviour
         { 
             if (Input.GetKeyDown(KeyCode.R))
             {
+                score = 0;
                 TogglePause(!isPaused);
                 CurrentStageID = 0;
                 for (int i = 0; i < stages.Length; i++)
