@@ -189,6 +189,8 @@ MonoBehaviour:
   attackRange: 7
   attackRate: 2
   weapon: {fileID: 3189592628282446667, guid: 3e3d3bc88c784284e8ea5a3ae144dbf1, type: 3}
+  speedPowerUpPrefab: {fileID: 5819081456445120680, guid: 4d596bc5516daed4eb1b8fc8ea3033e9, type: 3}
+  healthPowerUpPrefab: {fileID: 7142376761386496568, guid: 7b1a5ac97a0c31842b90ab2f7ae1dc9d, type: 3}
 --- !u!61 &-1396878350240656711
 BoxCollider2D:
   m_ObjectHideFlags: 0
