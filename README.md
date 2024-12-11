@@ -15,8 +15,8 @@ Az eredeti specifikációban megnevezett követelmények és használati esetek 
 | Fegyverek kezelése  | Kész (jelenleg 2 fegyvertípus)    |
 | Ellenfelek          | Folyamatban (bossok még nincsenek implementálva)   |
 | Aszteroidák         | Kész    |
-| Sebződés            | Folyamatban (az élet visszatöltés még nincs implementálva)   |
-| Power up-ok         | Folymatban (skeleton verzióban még nincs implementálva)  |
+| Sebződés            | Kész   |
+| Power up-ok         | Kész  |
 | Pontszámok          | Nincs implementálva |
 | Történeti haladás   | Kész    |
 
@@ -31,7 +31,7 @@ Az eredeti specifikációban megnevezett követelmények és használati esetek 
 | Enemy Movement (game) | Kész                |
 | Spawn Enemy (game)    | Kész                |
 | Take Damage (player)  | Kész                |
-| Collect Power-up (player) | Folyamatban           |
+| Collect Power-up (player) | Kész           |
 | Destroy Enemy (player/game) | Kész         |
 | Game Over (game)      | Kész                |
 | Start Game (player)   | Kész                |
@@ -46,7 +46,6 @@ Teszt esetek elérthetőek (Edit mode)
  - Szebb UI
  - Bossok
  - Újabb spriteok a még nem textúrált prefabokra
- - Score system
 
  
  Amennyiben a Unity húzza be a Scenet, ez az Assets/Scenes mappában elérhető, és az editorba húzható a bal oldalon (korábban gondot okozott)
