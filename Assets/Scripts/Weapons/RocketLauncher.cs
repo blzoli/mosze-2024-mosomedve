@@ -11,7 +11,7 @@ public class RocketLauncher : Weapon
 
     private Vector2 direction;
 
-    public void Start()
+    public void Awake()
     {
         this.damage = 2;
     }
