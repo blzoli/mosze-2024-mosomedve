@@ -76,7 +76,7 @@ public class Asteroid : MonoBehaviour
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             player.TakeDamage(1);
             Debug.Log("Player hit!");
-            Destroy(this.gameObject);
+            if (Application.isPlaying) Destroy(this.gameObject); // for edit mode test
         }
     }
 

@@ -18,6 +18,7 @@ public class GameCompleteCondition
         GameObject enemyPrefab = new GameObject("Enemy");
         game.asteroidPrefab = asteroidPrefab;
         game.enemyPrefab = enemyPrefab;
+        ScoreLoader scoreloader = new ScoreLoader();
 
 
         Assert.IsTrue(!Game.isOver);
