@@ -10,6 +10,8 @@ using UnityEngine;
  */
 public abstract class Item : MonoBehaviour
 {
+    private Coroutine moveInCircleCoroutine;
+
     /**
      * @brief An abstract method to define the effect of the item on the player.
      * 
@@ -28,10 +30,39 @@ public abstract class Item : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Item collected by player!"); 
+            Debug.Log("Item collected by player!");
             ApplyEffect(collision.gameObject);
             // deactivate but leaves the object in the scene
-            gameObject.SetActive(false);
+            /*gameObject.SetActive(false);*/
+            transform.position = new Vector3(-200, -200, 0); // can't deactivate it because of powerups. just move it offscreen
+
+            // Stop the MoveInCircle coroutine
+            if (moveInCircleCoroutine != null)
+            {
+                StopCoroutine(moveInCircleCoroutine);
+                moveInCircleCoroutine = null;
+            }
+        }
+    }
+
+    public void Start()
+    {
+        // moves item slowly in a circle to make it more interesting
+        Vector3 position = transform.position;
+        moveInCircleCoroutine = StartCoroutine(MoveInCircle(position));
+    }
+
+    private System.Collections.IEnumerator MoveInCircle(Vector3 position)
+    {
+        float angle = 0;
+        float radius = 0.2f;
+        while (true)
+        {
+            angle += Time.deltaTime/2;
+            float x = position.x + Mathf.Cos(angle) * radius;
+            float y = position.y + Mathf.Sin(angle) * radius;
+            transform.position = new Vector3(x, y, 0);
+            yield return null;
         }
     }
 }

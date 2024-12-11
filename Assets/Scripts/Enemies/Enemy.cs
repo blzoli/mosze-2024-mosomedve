@@ -27,6 +27,9 @@ public class Enemy : MonoBehaviour
     
     private float spawnTime; ///< Spawn time for score calculation.
 
+    public GameObject speedPowerUpPrefab; ///< The speed power-up prefab.
+    public GameObject healthPowerUpPrefab; ///< The health power-up prefab.
+
     void Start()
     {
         spawnTime = Time.time;
@@ -149,6 +152,13 @@ public class Enemy : MonoBehaviour
     {
         if (!Game.isOver && !Game.isGameComplete && !Game.isPaused)
         {
+            // drop a powerup at a 50% chance
+            if (Random.Range(0, 100) < 50)
+            {
+                GameObject powerUpPrefab = Random.Range(0, 100) < 50 ? speedPowerUpPrefab : healthPowerUpPrefab;
+                Instantiate(powerUpPrefab, transform.position, Quaternion.identity);
+            }
+
             float timeDifference = Time.time - spawnTime;
             int score = Mathf.Clamp(51 - (int)(timeDifference * 2), 1, 50); // Deduct a point for every half a second
             Game.AddScore(score);

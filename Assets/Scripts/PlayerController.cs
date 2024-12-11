@@ -138,4 +138,14 @@ public class PlayerController : MonoBehaviour
         // Reset the player's health
         health = 5;
     }
+
+    /**
+     * @brief Increases the player's health by a specified amount.
+     * @param healthBoost The amount of health to add.
+     */
+    public void IncreaseHealth(int healthBoost)
+    {
+        // Increase the player's health
+        health += healthBoost;
+    }
 }

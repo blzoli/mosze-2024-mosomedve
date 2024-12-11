@@ -75,7 +75,7 @@ public class Game : MonoBehaviour
             isGameComplete = true;
 
             // save score
-            ScoreLoader.AddScore("Player", score);
+            if (Application.isPlaying) ScoreLoader.AddScore("Player", score); // only save score in play mode
 
         }
     }
