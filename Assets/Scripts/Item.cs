@@ -55,10 +55,10 @@ public abstract class Item : MonoBehaviour
     private System.Collections.IEnumerator MoveInCircle(Vector3 position)
     {
         float angle = 0;
-        float radius = 0.5f;
+        float radius = 0.2f;
         while (true)
         {
-            angle += Time.deltaTime;
+            angle += Time.deltaTime/2;
             float x = position.x + Mathf.Cos(angle) * radius;
             float y = position.y + Mathf.Sin(angle) * radius;
             transform.position = new Vector3(x, y, 0);
