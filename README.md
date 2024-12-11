@@ -17,7 +17,7 @@ Az eredeti specifikációban megnevezett követelmények és használati esetek 
 | Aszteroidák         | Kész    |
 | Sebződés            | Kész   |
 | Power up-ok         | Kész  |
-| Pontszámok          | Nincs implementálva |
+| Pontszámok          | Kész |
 | Történeti haladás   | Kész    |
 
 
