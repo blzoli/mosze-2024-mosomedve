@@ -38,6 +38,9 @@ public class Game : MonoBehaviour
     /// @brief Reference to the UI Text element for displaying the story.
     public GameObject storyText;
 
+    /// @brief Boss prefabs
+    public GameObject[] bosses;
+
     /// @brief Adds points to the player's score.
     public static void AddScore(int points)
     {
@@ -136,6 +139,27 @@ public class Game : MonoBehaviour
         {
             yield return new WaitForSeconds(1.0f); // Check every second
         }
+
+        // spawn boss when all enemies are destroyed
+
+        // if stageID/2 is larger than the size of the bosses array, spawn the first two bosses, else spawn the boss at the index of stageID/2
+
+        if (CurrentStageID / 2 > bosses.Length)
+        {
+            Instantiate(bosses[0], GetRandomPosition(), Quaternion.identity);
+            Instantiate(bosses[1], GetRandomPosition(), Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(bosses[CurrentStageID / 2 - 1], GetRandomPosition(), Quaternion.identity);
+        }
+
+        // Wait until all bosses are destroyed
+        while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
+        {
+            yield return new WaitForSeconds(1.0f); // Check every second
+        }
+
 
         stage.Complete();
     }
