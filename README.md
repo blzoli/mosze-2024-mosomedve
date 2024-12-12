@@ -12,8 +12,8 @@ Az eredeti specifikációban megnevezett követelmények és használati esetek 
 |---------------------|---------|
 | Játéktér kialakítása | Kész    |
 | Mozgás              | Kész    |
-| Fegyverek kezelése  | Kész (jelenleg 2 fegyvertípus)    |
-| Ellenfelek          | Folyamatban (bossok még nincsenek implementálva)   |
+| Fegyverek kezelése  | Kész     |
+| Ellenfelek          | Kész   |
 | Aszteroidák         | Kész    |
 | Sebződés            | Kész   |
 | Power up-ok         | Kész  |
@@ -44,7 +44,6 @@ Teszt esetek elérthetőek (Edit mode)
 ## A végleges verziót többek között még tovább fejlesztjük a következőkkel:
  - SFX
  - Szebb UI
- - Bossok
  - Újabb spriteok a még nem textúrált prefabokra
 
  
