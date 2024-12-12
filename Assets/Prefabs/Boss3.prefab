@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3355812225472535615}
   - component: {fileID: 1372272968009171383}
   - component: {fileID: 6217228474773222217}
+  - component: {fileID: 73301215283863139}
+  - component: {fileID: 5577888285893315199}
   m_Layer: 0
   m_Name: Boss3
   m_TagString: Enemy
@@ -151,3 +153,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.9934449}
   m_EdgeRadius: 0
+--- !u!114 &73301215283863139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59552423770768593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94cee3602a67624e992653dd329ff9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarPrefab: {fileID: 5068913952392532635, guid: 2ada0d8cde3d9c544a6af6d4b92b8146, type: 3}
+--- !u!114 &5577888285893315199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59552423770768593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8b1750b834d444b88ab204b0074a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 5154777675223843460, guid: bee1ad270b34c6f4dab82cca1876b186, type: 3}
