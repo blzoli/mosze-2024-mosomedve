@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1109936072656351224}
   - component: {fileID: -3964080414126371386}
   m_Layer: 0
-  m_Name: Boss1_LaserGunObject
+  m_Name: Boss2_LaserGunObject
   m_TagString: WeaponPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  projectilePrefab: {fileID: 5154777675223843460, guid: 2afb9629736d7664d864e90aedd1b0a2, type: 3}
-  projectileSpeed: 4
+  projectilePrefab: {fileID: 5154777675223843460, guid: 2ebb00a0acbdebc48a2e0f62eb654028, type: 3}
+  projectileSpeed: 3
 --- !u!1 &2576059973566214098
 GameObject:
   m_ObjectHideFlags: 0
