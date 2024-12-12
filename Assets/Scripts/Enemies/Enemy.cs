@@ -153,7 +153,7 @@ public class Enemy : MonoBehaviour
         if (!Game.isOver && !Game.isGameComplete && !Game.isPaused)
         {
             // drop a powerup at a 50% chance
-            if (Random.Range(0, 100) < 50)
+            if ((Random.Range(0, 100) < 50) && speedPowerUpPrefab != null && healthPowerUpPrefab != null)
             {
                 GameObject powerUpPrefab = Random.Range(0, 100) < 50 ? speedPowerUpPrefab : healthPowerUpPrefab;
                 Instantiate(powerUpPrefab, transform.position, Quaternion.identity);
