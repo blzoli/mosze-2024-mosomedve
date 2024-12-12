@@ -165,8 +165,10 @@ public class Game : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject[] eprojectiles = GameObject.FindGameObjectsWithTag("EnemyProjectile");
         GameObject[] pprojectiles = GameObject.FindGameObjectsWithTag("PlayerProjectile");
+        GameObject[] weaponPickups = GameObject.FindGameObjectsWithTag("WeaponPickup");
+        GameObject[] powerups = GameObject.FindGameObjectsWithTag("PowerUp");
 
-        foreach (GameObject enemy in enemies.Concat(eprojectiles).Concat(pprojectiles))
+        foreach (GameObject enemy in enemies.Concat(eprojectiles).Concat(pprojectiles).Concat(weaponPickups).Concat(powerups))
         {
             Destroy(enemy);
         }
