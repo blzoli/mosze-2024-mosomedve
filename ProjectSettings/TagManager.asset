@@ -9,6 +9,7 @@ TagManager:
   - WeaponPickup
   - PlayerProjectile
   - Asteroid
+  - PowerUp
   layers:
   - Default
   - TransparentFX
