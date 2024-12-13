@@ -127,6 +127,10 @@ public class PlayerController : MonoBehaviour
             Game.GameOver();
             // Game over
             Debug.Log("Game Over!");
+        } else
+        {
+            // Play the damage sound
+            if (Application.isPlaying) AudioManager.Instance.PlaySound("playerDamage");
         }
     }
 
