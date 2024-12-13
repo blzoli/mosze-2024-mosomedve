@@ -42,7 +42,6 @@ A Doxygen által generált dokumentáció jelenleg a Doxygen-documentation-html.
 Teszt esetek elérthetőek (Edit mode)
 
 ## A végleges verziót többek között még tovább fejlesztjük a következőkkel:
- - SFX
  - Szebb UI
  - Újabb spriteok a még nem textúrált prefabokra
 

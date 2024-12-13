@@ -73,6 +73,7 @@ public class Game : MonoBehaviour
         }
         else
         {
+            if (Application.isPlaying) AudioManager.Instance.PlaySound("gameComplete");
             Debug.Log("All stages completed.");
             isOver = true;
             isGameComplete = true;
@@ -154,6 +155,8 @@ public class Game : MonoBehaviour
             Instantiate(bosses[CurrentStageID / 2 - 1], GetRandomPosition(), Quaternion.identity);
         }
 
+        if (Application.isPlaying) AudioManager.Instance.PlaySound("bossEnter");
+
         // Wait until all bosses are destroyed
         while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
         {
@@ -219,6 +222,8 @@ public class Game : MonoBehaviour
     {
         isPaused = pause;
         Time.timeScale = isPaused ? 0 : 1;
+
+        if (Application.isPlaying) AudioManager.Instance.PlaySound("menuSound");
     }
 
     /// @brief Game over method.
@@ -228,6 +233,7 @@ public class Game : MonoBehaviour
     {
         isOver = true;
         TogglePause(true);
+        if (Application.isPlaying) AudioManager.Instance.PlaySound("gameOver");
     }
 
     /// @brief Handles the game update loop.

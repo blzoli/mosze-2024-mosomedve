@@ -39,6 +39,7 @@ public class LaserGun : Weapon
             {
                 rb.velocity = direction * projectileSpeed;
             }
+
         }
     }
 }

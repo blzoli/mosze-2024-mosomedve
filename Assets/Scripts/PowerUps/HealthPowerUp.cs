@@ -11,5 +11,7 @@ public class HealthPowerUp : Item
         PlayerController playerController = player.GetComponent<PlayerController>();
 
         playerController.IncreaseHealth(healthBoostAmount);
+
+        AudioManager.Instance.PlaySound("healthPickupSound");
     }
 }

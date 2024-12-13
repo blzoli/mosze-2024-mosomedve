@@ -25,6 +25,9 @@ public abstract class Weapon : Item
         if (playerController != null)
         {
             playerController.PickUpWeapon(this);
+
+            // Play the pickup sound.
+            AudioManager.Instance.PlaySound("weaponPickupSound");
         }
     }
 

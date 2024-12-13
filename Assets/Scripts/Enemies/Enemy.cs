@@ -128,7 +128,9 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log("Enemy sebzést kapott: " + damage + ". Jelenlegi életerõ: " + health);
+        // Debug.Log("Enemy sebzést kapott: " + damage + ". Jelenlegi életerõ: " + health);
+        if (Application.isPlaying) AudioManager.Instance.PlaySound("enemyDamage");
+
 
         if (health <= 0)
         {
@@ -162,6 +164,8 @@ public class Enemy : MonoBehaviour
             float timeDifference = Time.time - spawnTime;
             int score = Mathf.Clamp(51 - (int)(timeDifference * 2), 1, 50); // Deduct a point for every half a second
             Game.AddScore(score);
+
+            AudioManager.Instance.PlaySound("explosion");
         }
     }
 }

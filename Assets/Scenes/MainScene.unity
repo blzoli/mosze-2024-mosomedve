@@ -2080,6 +2080,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1b38ddb7db9074c8c00e022b11e5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1345790816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1345790818}
+  - component: {fileID: 1345790817}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1345790817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345790816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0148208f307708842868328e956f9752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: menuSound
+    clip: {fileID: 8300000, guid: 0c31ce154b784f24a8f4c40b18147115, type: 3}
+    volume: 1
+  - name: healthPickupSound
+    clip: {fileID: 8300000, guid: 7b8f572d2516e844c99fd63cdddbe9a2, type: 3}
+    volume: 1
+  - name: laserSound
+    clip: {fileID: 8300000, guid: dc84f6c16b49e9247bbce6ab9b9747d0, type: 3}
+    volume: 0.1
+  - name: explosion
+    clip: {fileID: 8300000, guid: dd290bad25c38f84fb68e0e3e17d24cd, type: 3}
+    volume: 0.2
+  - name: weaponPickupSound
+    clip: {fileID: 8300000, guid: 3265a3cc75ccd594398fc87262e07e15, type: 3}
+    volume: 1
+  - name: enemyDamage
+    clip: {fileID: 8300000, guid: 279e1e1c1d5338f499dec201db3f03f6, type: 3}
+    volume: 1
+  - name: rocketExplosion
+    clip: {fileID: 8300000, guid: 21013528f4b0280438f66e612355155d, type: 3}
+    volume: 0.536
+  - name: shotgun
+    clip: {fileID: 8300000, guid: bda5421194c03474998401f2c04f3453, type: 3}
+    volume: 0.743
+  - name: gameComplete
+    clip: {fileID: 8300000, guid: 4483c128c580f4d428a23de1c44f385d, type: 3}
+    volume: 1
+  - name: gameOver
+    clip: {fileID: 8300000, guid: c4b642f389a4e7e469b5884fc2aacf1a, type: 3}
+    volume: 1
+  - name: bossEnter
+    clip: {fileID: 8300000, guid: 1f04a9142c18c6c4a9c4aa3a1096aee1, type: 3}
+    volume: 1
+  - name: playerDamage
+    clip: {fileID: 8300000, guid: 298acc92f77d18141ba169df7c41e5a1, type: 3}
+    volume: 1
+--- !u!4 &1345790818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345790816}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5529735, y: 0.8452667, z: -0.0044396413}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1388285740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3366,3 +3447,4 @@ SceneRoots:
   - {fileID: 240029596616216092}
   - {fileID: 2030350391}
   - {fileID: 1501797828}
+  - {fileID: 1345790818}
