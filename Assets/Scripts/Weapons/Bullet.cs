@@ -6,6 +6,22 @@ public class Bullet : MonoBehaviour
 {
     public int damage; ///< Amount of damage the bullet inflicts.
 
+
+    // @brief Initializes the bullet and starts the despawn coroutine.
+    private void Start()
+    {
+        // Start the despawn coroutine
+        StartCoroutine(DespawnAfterTime(10f));
+    }
+
+
+    // @brief Destroys the bullet after a specified time.
+    private IEnumerator DespawnAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (Application.isPlaying) Destroy(this.gameObject);
+    }
+
     // @brief Destroys the bullet when it collides with another object.
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,5 +41,4 @@ public class Bullet : MonoBehaviour
             if (Application.isPlaying) Destroy(this.gameObject);
         }
     }
-
 }

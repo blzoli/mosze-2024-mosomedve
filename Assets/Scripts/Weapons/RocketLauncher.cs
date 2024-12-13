@@ -1,25 +1,24 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using static UnityEditor.Rendering.CameraUI;
 
 /// <summary>
 /// Represents a Rocket Launcher weapon.
 /// </summary>
 public class RocketLauncher : Weapon
 {
-    /// <summary>
-    /// Fires the rocket launcher.
-    /// </summary>
-    /// 
     public GameObject projectilePrefab;
     public float projectileSpeed = 3f;
 
     private Vector2 direction;
 
-    public void Start()
+    public void Awake()
     {
         this.damage = 2;
     }
+    /// <summary>
+    /// Fires the rocket launcher.
+    /// </summary>
+    /// 
 
     public override void Fire(GameObject caller)
     {

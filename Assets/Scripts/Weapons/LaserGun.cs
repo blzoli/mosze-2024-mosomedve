@@ -14,7 +14,7 @@ public class LaserGun : Weapon
 
     private Vector2 direction;
 
-    public void Start()
+    public void Awake()
     {
         this.damage = 1;
     }
@@ -39,6 +39,7 @@ public class LaserGun : Weapon
             {
                 rb.velocity = direction * projectileSpeed;
             }
+
         }
     }
 }

@@ -13,6 +13,13 @@ public class GameCompleteCondition
         Game.isOver = false;
         GameObject gameObj = new GameObject();
         Game game = gameObj.AddComponent<Game>();
+        // Add asteroid and enemy prefabs
+        GameObject asteroidPrefab = new GameObject("Asteroid");
+        GameObject enemyPrefab = new GameObject("Enemy");
+        game.asteroidPrefab = asteroidPrefab;
+        game.enemyPrefab = enemyPrefab;
+        ScoreLoader scoreloader = new ScoreLoader();
+
 
         Assert.IsTrue(!Game.isOver);
 
@@ -21,13 +28,18 @@ public class GameCompleteCondition
 
         int l = game.stages.Length;
         
-        for (int i = 1; i < l-1; i++)  
+        for (int i = 1; i < l; i++)  
         {  
             gameObj.GetComponent<Game>().StartNextStage();    
             Assert.IsTrue(!Game.isOver);    
         }
 
-        gameObj.GetComponent<Game>().StartNextStage();  
+        gameObj.GetComponent<Game>().StartNextStage();  // This should trigger the game over condition, since no more stages are available
+
+        Debug.Log("Game Over: " + Game.isOver);
+        Debug.Log("stages length: " + game.stages.Length);
+        Debug.Log("current stage: " + game.CurrentStageID);
+
         Assert.IsTrue(Game.isOver);
          
         Game.ResetGameState();
