@@ -265,7 +265,7 @@ public class Game : MonoBehaviour
         }
         if (!isGameComplete && isPaused && !isStoryDisplayed)
         { 
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && !isOver)
             {
                 score = 0;
                 TogglePause(!isPaused);

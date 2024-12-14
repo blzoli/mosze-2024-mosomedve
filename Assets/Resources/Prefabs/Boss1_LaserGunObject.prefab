@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  projectilePrefab: {fileID: 5154777675223843460, guid: 2afb9629736d7664d864e90aedd1b0a2, type: 3}
+  projectilePrefab: {fileID: 5154777675223843460, guid: 8cddfc0782c5ee244a5f8c6947e5db4a, type: 3}
   projectileSpeed: 4
 --- !u!1 &2576059973566214098
 GameObject:
