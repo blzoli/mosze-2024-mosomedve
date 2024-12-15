@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     private float playerWidth;    ///< The half-width of the player sprite.
     private float playerHeight;   ///< The half-height of the player sprite.
 
+    private float fireRate = 0.33f; ///< Time between shots (3 shots per second)
+    private float nextFireTime = 0f; ///< Time when the player can fire again
+
+
     /**
      * @brief Initializes the player size and screen boundaries.
      */
@@ -109,6 +113,7 @@ public class PlayerController : MonoBehaviour
     /**
      * @brief Fires the player's weapon when the space key is pressed.
      */
+
     void Shoot()
     {
         void FireWeapon()
@@ -122,9 +127,10 @@ public class PlayerController : MonoBehaviour
             else Debug.Log("No weapon equipped!");
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= nextFireTime)
         {
             FireWeapon();
+            nextFireTime = Time.time + fireRate; // Set the next fire time
         }
     }
 
