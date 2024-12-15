@@ -20,6 +20,12 @@ public class PlayerController : MonoBehaviour
     private float fireRate = 0.33f; ///< Time between shots (3 shots per second)
     private float nextFireTime = 0f; ///< Time when the player can fire again
 
+    private static GameObject explosion; ///< The explosion effect to play when the player is destroyed
+
+    private GameObject mainSprite;
+    private GameObject leftSprite;
+    private GameObject rightSprite;
+
 
     /**
      * @brief Initializes the player size and screen boundaries.
@@ -30,8 +36,16 @@ public class PlayerController : MonoBehaviour
         playerWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
         playerHeight = GetComponent<SpriteRenderer>().bounds.extents.y;
 
-        // Calculate screen bounds using the main camera
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+
+        GameObject player = this.transform.gameObject; 
+        explosion = player.transform.Find("explosion").gameObject;
+        mainSprite = player.transform.Find("ship").gameObject;
+        leftSprite = player.transform.Find("shipleft").gameObject;
+        rightSprite = player.transform.Find("shipright").gameObject;
+
+
+    // Calculate screen bounds using the main camera
+    screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
 
     /**
@@ -71,10 +85,6 @@ public class PlayerController : MonoBehaviour
 
         // switch sprites to face the direction of movement
 
-        GameObject player = this.transform.gameObject;
-        GameObject mainSprite = player.transform.Find("ship").gameObject;
-        GameObject leftSprite = player.transform.Find("shipleft").gameObject;
-        GameObject rightSprite = player.transform.Find("shipright").gameObject;
 
         if (movement.x > 0)
         {
@@ -156,6 +166,7 @@ public class PlayerController : MonoBehaviour
         // Check if the player has run out of health
         if (health <= 0)
         {
+            explosion.SetActive(true);
             Game.GameOver();
             // Game over
             Debug.Log("Game Over!");
@@ -171,6 +182,7 @@ public class PlayerController : MonoBehaviour
      */
     public static void ResetPlayer()
     {
+        explosion.SetActive(false);
         // Reset the player's health
         health = 5;
     }
