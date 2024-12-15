@@ -65,6 +65,32 @@ public class PlayerController : MonoBehaviour
         if (movement.magnitude > 1)
             movement.Normalize();
 
+        // switch sprites to face the direction of movement
+
+        GameObject player = this.transform.gameObject;
+        GameObject mainSprite = player.transform.Find("ship").gameObject;
+        GameObject leftSprite = player.transform.Find("shipleft").gameObject;
+        GameObject rightSprite = player.transform.Find("shipright").gameObject;
+
+        if (movement.x > 0)
+        {
+            mainSprite.SetActive(false);
+            leftSprite.SetActive(false);
+            rightSprite.SetActive(true);
+        }
+        else if (movement.x < 0)
+        {
+            mainSprite.SetActive(false);
+            leftSprite.SetActive(true);
+            rightSprite.SetActive(false);
+        }
+        else
+        {
+            mainSprite.SetActive(true);
+            leftSprite.SetActive(false);
+            rightSprite.SetActive(false);
+        }
+
         // Apply the movement
         transform.Translate(movement * moveSpeed * Time.deltaTime);
     }

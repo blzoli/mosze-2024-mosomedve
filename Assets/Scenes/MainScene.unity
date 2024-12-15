@@ -3282,14 +3282,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6684089145478229373, guid: 5fcc32d7972c36f479538c131896296b, type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 3189592628282446667, guid: 3e3d3bc88c784284e8ea5a3ae144dbf1, type: 3}
-    - target: {fileID: 6684089145478229373, guid: 5fcc32d7972c36f479538c131896296b, type: 3}
-      propertyPath: moveSpeed
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 6813053325424251630, guid: 5fcc32d7972c36f479538c131896296b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
