@@ -14,9 +14,8 @@ public class PowerUpTests
     public void SetUp()
     {
         // Create a player GameObject
-        player = new GameObject();
-        playerController = player.AddComponent<PlayerController>();
-        player.AddComponent<SpriteRenderer>();
+        player = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Player"));
+        playerController = player.GetComponent<PlayerController>();
 
         // Load the power-up prefabs
         healthPowerUpPrefab = Resources.Load<GameObject>("Prefabs/HealthPickup");
@@ -60,7 +59,7 @@ public class PowerUpTests
         playerController.moveSpeed = 5f;
 
         // Instantiate the speed power-up
-        GameObject speedPowerUp = Object.Instantiate(speedPowerUpPrefab, player.transform.position, Quaternion.identity);
+        GameObject speedPowerUp = Object.Instantiate(speedPowerUpPrefab, new Vector3(20f,20f,20f), Quaternion.identity);
         SpeedPowerUp speedPowerUpScript = speedPowerUp.GetComponent<SpeedPowerUp>();
 
         // Simulate collision

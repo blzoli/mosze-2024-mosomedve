@@ -40,6 +40,8 @@ public class Game : MonoBehaviour
 
     /// @brief Boss prefabs
     public GameObject[] bosses;
+    /// @brief Reference to high score tag input
+    public TMPro.TMP_InputField highScoreTag;
 
     /// @brief Adds points to the player's score.
     public static void AddScore(int points)
@@ -74,12 +76,10 @@ public class Game : MonoBehaviour
         else
         {
             if (Application.isPlaying) AudioManager.Instance.PlaySound("gameComplete");
+            CleanUpScene();
             Debug.Log("All stages completed.");
             isOver = true;
             isGameComplete = true;
-
-            // save score
-            if (Application.isPlaying) ScoreLoader.AddScore("Player", score); // only save score in play mode
 
         }
     }
@@ -178,16 +178,8 @@ public class Game : MonoBehaviour
         return spawnPosition;
     }
 
-    /// @brief Restarts current stage.
-    /// 
-    /// This method restarts the current stage by resetting the stage ID and player attributes.
-    public void RestartStage()
+    public static void CleanUpScene()
     {
-        score = 0;
-        isOver = false;
-        TogglePause(false);
-        CurrentStageID--;
-        PlayerController.ResetPlayer();
         // find all enemies by tag and destroy them
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject[] eprojectiles = GameObject.FindGameObjectsWithTag("EnemyProjectile");
@@ -195,15 +187,41 @@ public class Game : MonoBehaviour
         GameObject[] weaponPickups = GameObject.FindGameObjectsWithTag("WeaponPickup");
         GameObject[] powerups = GameObject.FindGameObjectsWithTag("PowerUp");
 
-        foreach (GameObject enemy in enemies.Concat(eprojectiles).Concat(pprojectiles).Concat(weaponPickups).Concat(powerups))
-        {
-            Destroy(enemy);
-        }
+        if (Application.isPlaying)
+        { 
+            foreach (GameObject enemy in enemies)
+            { 
+                // disable drop item on death
+                if (enemy.GetComponent<DropItemOnDeath>())
+                {
+                    enemy.GetComponent<DropItemOnDeath>().enabled = false;
+                }
+            }
+            foreach (GameObject enemy in enemies.Concat(eprojectiles).Concat(pprojectiles).Concat(weaponPickups).Concat(powerups))
+            {
+                Destroy(enemy);
+            }
+         }
+    }
+
+    /// @brief Restarts current stage.
+    /// 
+    /// This method restarts the current stage by resetting the stage ID and player attributes.
+    public void RestartStage()
+    {
+        CleanUpScene();
+        score = 0;
+
+        TogglePause(false);
+        CurrentStageID--;
+        PlayerController.ResetPlayer();
+     
+        isOver = false;
 
         if (isGameComplete)
         {
             isGameComplete = false;
-            CurrentStageID = 0;
+            CurrentStageID = 0;  
             for (int i = 0; i < stages.Length; i++)
             {
                 stages[i].Reset();
@@ -231,6 +249,7 @@ public class Game : MonoBehaviour
     /// This method is called when the game is over. Pauses time and shows the game over screen.
     public static void GameOver()
     {
+        CleanUpScene();
         isOver = true;
         TogglePause(true);
         if (Application.isPlaying) AudioManager.Instance.PlaySound("gameOver");
@@ -239,7 +258,7 @@ public class Game : MonoBehaviour
     /// @brief Handles the game update loop.
     void Update()
     {
-        if (isStoryDisplayed && Input.GetKeyDown(KeyCode.R))
+        if (isStoryDisplayed && Input.GetKeyDown(KeyCode.R)) // Hide the story text and continue the game
         {
             storyText.SetActive(false);
             isStoryDisplayed = false;
@@ -248,7 +267,7 @@ public class Game : MonoBehaviour
             return;
         }
 
-        if (!isStarted)
+        if (!isStarted) // Start the game
         {
         if (Input.GetKey(KeyCode.R))
             {
@@ -259,13 +278,13 @@ public class Game : MonoBehaviour
                 isStarted = true;
             }
         }
-        if (isStarted && Input.GetKeyDown(KeyCode.Escape))
+        if (isStarted && Input.GetKeyDown(KeyCode.Escape)) // Pause the game
         {
             TogglePause(!isPaused);
         }
-        if (!isGameComplete && isPaused && !isStoryDisplayed)
+        if (!isGameComplete && isPaused && !isStoryDisplayed) // game is paused
         { 
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && !isOver) // exit to menu on pause
             {
                 score = 0;
                 TogglePause(!isPaused);
@@ -277,16 +296,31 @@ public class Game : MonoBehaviour
                 isStarted = false;
                 SceneManager.LoadScene("MenuScene");
             }
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q)) // quit the game on pause
             {
                 Application.Quit();
             }
         }
-        if (isOver)
+        if (isOver) // restart game
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
                 RestartStage();
+            }
+        }
+        if (isGameComplete) // add high score
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                AddHighScore();
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("MenuScene");
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Application.Quit();
             }
         }
     }
@@ -305,14 +339,35 @@ public class Game : MonoBehaviour
     /// and pause the game until the player presses R to continue.
     public void DisplayStory(string story)
     {
+
+        // destroy remaining projectiles. Player might run into them after the story is displayed
+        GameObject[] eprojectiles = GameObject.FindGameObjectsWithTag("EnemyProjectile");
+
+        foreach (GameObject eprojectile in eprojectiles)
+        {
+            Destroy(eprojectile);
+        }
+
+
         isStoryDisplayed = true;
-        storyText.GetComponent<TMPro.TextMeshProUGUI>().text = story;
+        storyText.transform.Find("story").GetComponent<TMPro.TextMeshProUGUI>().text = story;
         storyText.SetActive(true);
         if (isGameComplete)
         {
             StartNextStage();
         }
         else TogglePause(true);
+    }
+    
+    public void AddHighScore() 
+    {
+        string tag = highScoreTag.text;
+        if (tag.Length != 3) return;
+        if (ScoreLoader.CheckIfScoreHighEnough(score))
+        {
+            ScoreLoader.AddScore(tag, score);
+            SceneManager.LoadScene("MenuScene");
+        }
     }
 
 }

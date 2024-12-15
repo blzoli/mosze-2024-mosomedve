@@ -11,7 +11,7 @@ public class PlaySoundOnDestroy : MonoBehaviour
     {
         // play sound if on screen
         if (transform.position.y < Camera.main.transform.position.y + Camera.main.orthographicSize && transform.position.y > Camera.main.transform.position.y - Camera.main.orthographicSize)
-            AudioManager.Instance.PlaySound(soundName);
+            if (AudioManager.Instance != null) AudioManager.Instance.PlaySound(soundName);
     }
 
 }

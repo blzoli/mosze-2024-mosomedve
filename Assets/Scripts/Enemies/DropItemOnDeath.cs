@@ -7,6 +7,6 @@ public class DropItemOnDeath : MonoBehaviour
     public GameObject itemPrefab;
     private void OnDestroy()
     {
-        Instantiate(itemPrefab, transform.position, Quaternion.identity);
+        if (!Game.isOver) Instantiate(itemPrefab, transform.position, Quaternion.identity);
     }
 }

@@ -18,6 +18,7 @@ public class GameUIDisplay : MonoBehaviour
     public GameObject GameUI; ///< Reference to the game UI.
     public GameObject gameCompleteMenu; ///< Reference to the game complete menu.
     public TextMeshProUGUI scoreText; ///< Text to display the player's score.
+    public GameObject highScoreAddMenu; ///< Reference to the high score add menu.
 
     /// <summary>
     /// Updates the health display based on the current health value.
@@ -38,7 +39,7 @@ public class GameUIDisplay : MonoBehaviour
 
     public void UpdateScore(int score)
     {
-        scoreText.text = "Score: " + score;
+        scoreText.text = ""+ score;
     }
 
     /// <summary>
@@ -47,7 +48,7 @@ public class GameUIDisplay : MonoBehaviour
     /// <param name="stageId">The current stage ID.</param>
     public void UpdateStage(int stageId)
     {
-        stageText.text = "Stage: " + stageId;
+        stageText.text = "CURRENT STAGE: " + stageId;
     }
 
     /// <summary>
@@ -93,6 +94,22 @@ public class GameUIDisplay : MonoBehaviour
     public void UpdateGameCompleteMenu()
     {         
         gameCompleteMenu.SetActive(Game.isGameComplete);
+
+        if (Game.isGameComplete && ScoreLoader.CheckIfScoreHighEnough(Game.score))
+        {
+            highScoreAddMenu.SetActive(true);
+        } else highScoreAddMenu.SetActive(false);
+    }
+
+    public void LimitTagToThreeChars()
+    {
+        // get input field
+        TMP_InputField input = highScoreAddMenu.GetComponentInChildren<TMP_InputField>();
+        // limit input to 3 characters
+        if (input.text.Length > 3)
+        {
+            input.text = input.text.Substring(0, 3);
+        }
     }
 
     private void Update()
@@ -102,7 +119,7 @@ public class GameUIDisplay : MonoBehaviour
             UpdateHealth(PlayerController.health);
         }
 
-        if (game.CurrentStageID != int.Parse(stageText.text.Split(' ')[1]))
+        if (game.CurrentStageID != int.Parse(stageText.text.Split(' ')[2]))
         {
             UpdateStage(game.CurrentStageID);
         }

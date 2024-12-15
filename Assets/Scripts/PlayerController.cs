@@ -17,6 +17,16 @@ public class PlayerController : MonoBehaviour
     private float playerWidth;    ///< The half-width of the player sprite.
     private float playerHeight;   ///< The half-height of the player sprite.
 
+    private float fireRate = 0.25f; ///< Time between shots (4 shots per second)
+    private float nextFireTime = 0f; ///< Time when the player can fire again
+
+    private static GameObject explosion; ///< The explosion effect to play when the player is destroyed
+
+    private GameObject mainSprite;
+    private GameObject leftSprite;
+    private GameObject rightSprite;
+
+
     /**
      * @brief Initializes the player size and screen boundaries.
      */
@@ -26,8 +36,16 @@ public class PlayerController : MonoBehaviour
         playerWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
         playerHeight = GetComponent<SpriteRenderer>().bounds.extents.y;
 
-        // Calculate screen bounds using the main camera
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+
+        GameObject player = this.transform.gameObject; 
+        explosion = player.transform.Find("explosion").gameObject;
+        mainSprite = player.transform.Find("ship").gameObject;
+        leftSprite = player.transform.Find("shipleft").gameObject;
+        rightSprite = player.transform.Find("shipright").gameObject;
+
+
+    // Calculate screen bounds using the main camera
+    screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
 
     /**
@@ -65,6 +83,28 @@ public class PlayerController : MonoBehaviour
         if (movement.magnitude > 1)
             movement.Normalize();
 
+        // switch sprites to face the direction of movement
+
+
+        if (movement.x > 0)
+        {
+            mainSprite.SetActive(false);
+            leftSprite.SetActive(false);
+            rightSprite.SetActive(true);
+        }
+        else if (movement.x < 0)
+        {
+            mainSprite.SetActive(false);
+            leftSprite.SetActive(true);
+            rightSprite.SetActive(false);
+        }
+        else
+        {
+            mainSprite.SetActive(true);
+            leftSprite.SetActive(false);
+            rightSprite.SetActive(false);
+        }
+
         // Apply the movement
         transform.Translate(movement * moveSpeed * Time.deltaTime);
     }
@@ -83,6 +123,7 @@ public class PlayerController : MonoBehaviour
     /**
      * @brief Fires the player's weapon when the space key is pressed.
      */
+
     void Shoot()
     {
         void FireWeapon()
@@ -96,9 +137,10 @@ public class PlayerController : MonoBehaviour
             else Debug.Log("No weapon equipped!");
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= nextFireTime)
         {
             FireWeapon();
+            nextFireTime = Time.time + fireRate; // Set the next fire time
         }
     }
 
@@ -124,6 +166,7 @@ public class PlayerController : MonoBehaviour
         // Check if the player has run out of health
         if (health <= 0)
         {
+            if (Application.isPlaying) explosion.SetActive(true);
             Game.GameOver();
             // Game over
             Debug.Log("Game Over!");
@@ -140,6 +183,10 @@ public class PlayerController : MonoBehaviour
     public static void ResetPlayer()
     {
         // Reset the player's health
+        if (explosion != null)
+        {
+            explosion.SetActive(false);
+        }
         health = 5;
     }
 

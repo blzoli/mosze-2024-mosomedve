@@ -21,7 +21,7 @@ public class ScoreLoader : MonoBehaviour
     private static string filePath = "Assets/Resources/scores.json";
     public static Leaderboard leaderboard;
 
-    void Start()
+    public void OnEnable()
     {
         LoadOrCreateScores();
     }
