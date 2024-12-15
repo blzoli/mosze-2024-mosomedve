@@ -179,7 +179,7 @@ public class Game : MonoBehaviour
         return spawnPosition;
     }
 
-    public void CleanUpScene()
+    public static void CleanUpScene()
     {
         // find all enemies by tag and destroy them
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -188,8 +188,16 @@ public class Game : MonoBehaviour
         GameObject[] weaponPickups = GameObject.FindGameObjectsWithTag("WeaponPickup");
         GameObject[] powerups = GameObject.FindGameObjectsWithTag("PowerUp");
 
-        if (Application.isPlaying) 
+        if (Application.isPlaying)
         { 
+            foreach (GameObject enemy in enemies)
+            { 
+                // disable drop item on death
+                if (enemy.GetComponent<DropItemOnDeath>())
+                {
+                    enemy.GetComponent<DropItemOnDeath>().enabled = false;
+                }
+            }
             foreach (GameObject enemy in enemies.Concat(eprojectiles).Concat(pprojectiles).Concat(weaponPickups).Concat(powerups))
             {
                 Destroy(enemy);
@@ -202,18 +210,19 @@ public class Game : MonoBehaviour
     /// This method restarts the current stage by resetting the stage ID and player attributes.
     public void RestartStage()
     {
+        CleanUpScene();
         score = 0;
-        isOver = false;
+
         TogglePause(false);
         CurrentStageID--;
         PlayerController.ResetPlayer();
-
-        CleanUpScene();
+     
+        isOver = false;
 
         if (isGameComplete)
         {
             isGameComplete = false;
-            CurrentStageID = 0;
+            CurrentStageID = 0;  
             for (int i = 0; i < stages.Length; i++)
             {
                 stages[i].Reset();
@@ -241,6 +250,7 @@ public class Game : MonoBehaviour
     /// This method is called when the game is over. Pauses time and shows the game over screen.
     public static void GameOver()
     {
+        CleanUpScene();
         isOver = true;
         TogglePause(true);
         if (Application.isPlaying) AudioManager.Instance.PlaySound("gameOver");

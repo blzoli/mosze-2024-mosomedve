@@ -188,7 +188,6 @@ public class PlayerController : MonoBehaviour
             explosion.SetActive(false);
         }
         health = 5;
-        health = 5;
     }
 
     /**
