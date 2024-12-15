@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour
         // Check if the player has run out of health
         if (health <= 0)
         {
-            explosion.SetActive(true);
+            if (Application.isPlaying) explosion.SetActive(true);
             Game.GameOver();
             // Game over
             Debug.Log("Game Over!");
@@ -182,8 +182,12 @@ public class PlayerController : MonoBehaviour
      */
     public static void ResetPlayer()
     {
-        explosion.SetActive(false);
         // Reset the player's health
+        if (explosion != null)
+        {
+            explosion.SetActive(false);
+        }
+        health = 5;
         health = 5;
     }
 

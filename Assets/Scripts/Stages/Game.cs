@@ -41,6 +41,9 @@ public class Game : MonoBehaviour
     /// @brief Boss prefabs
     public GameObject[] bosses;
 
+    /// @brief Reference to high score tag input
+    public GameObject highScoreTag;
+
     /// @brief Adds points to the player's score.
     public static void AddScore(int points)
     {
@@ -78,9 +81,6 @@ public class Game : MonoBehaviour
             Debug.Log("All stages completed.");
             isOver = true;
             isGameComplete = true;
-
-            // save score
-            if (Application.isPlaying) ScoreLoader.AddScore("Player", score); // only save score in play mode
 
         }
     }
@@ -179,7 +179,7 @@ public class Game : MonoBehaviour
         return spawnPosition;
     }
 
-    public void CleanUpScene() 
+    public void CleanUpScene()
     {
         // find all enemies by tag and destroy them
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -188,10 +188,13 @@ public class Game : MonoBehaviour
         GameObject[] weaponPickups = GameObject.FindGameObjectsWithTag("WeaponPickup");
         GameObject[] powerups = GameObject.FindGameObjectsWithTag("PowerUp");
 
-        foreach (GameObject enemy in enemies.Concat(eprojectiles).Concat(pprojectiles).Concat(weaponPickups).Concat(powerups))
-        {
-            Destroy(enemy);
-        }
+        if (Application.isPlaying) 
+        { 
+            foreach (GameObject enemy in enemies.Concat(eprojectiles).Concat(pprojectiles).Concat(weaponPickups).Concat(powerups))
+            {
+                Destroy(enemy);
+            }
+         }
     }
 
     /// @brief Restarts current stage.
@@ -246,7 +249,7 @@ public class Game : MonoBehaviour
     /// @brief Handles the game update loop.
     void Update()
     {
-        if (isStoryDisplayed && Input.GetKeyDown(KeyCode.R))
+        if (isStoryDisplayed && Input.GetKeyDown(KeyCode.R)) // Hide the story text and continue the game
         {
             storyText.SetActive(false);
             isStoryDisplayed = false;
@@ -255,7 +258,7 @@ public class Game : MonoBehaviour
             return;
         }
 
-        if (!isStarted)
+        if (!isStarted) // Start the game
         {
         if (Input.GetKey(KeyCode.R))
             {
@@ -266,13 +269,13 @@ public class Game : MonoBehaviour
                 isStarted = true;
             }
         }
-        if (isStarted && Input.GetKeyDown(KeyCode.Escape))
+        if (isStarted && Input.GetKeyDown(KeyCode.Escape)) // Pause the game
         {
             TogglePause(!isPaused);
         }
-        if (!isGameComplete && isPaused && !isStoryDisplayed)
+        if (!isGameComplete && isPaused && !isStoryDisplayed) // game is paused
         { 
-            if (Input.GetKeyDown(KeyCode.R) && !isOver)
+            if (Input.GetKeyDown(KeyCode.R) && !isOver) // exit to menu on pause
             {
                 score = 0;
                 TogglePause(!isPaused);
@@ -284,16 +287,31 @@ public class Game : MonoBehaviour
                 isStarted = false;
                 SceneManager.LoadScene("MenuScene");
             }
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q)) // quit the game on pause
             {
                 Application.Quit();
             }
         }
-        if (isOver)
+        if (isOver) // restart game
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
                 RestartStage();
+            }
+        }
+        if (isGameComplete) // add high score
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                AddHighScore();
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("MenuScene");
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Application.Quit();
             }
         }
     }
@@ -330,6 +348,16 @@ public class Game : MonoBehaviour
             StartNextStage();
         }
         else TogglePause(true);
+    }
+    
+    public void AddHighScore() 
+    {
+        if (ScoreLoader.CheckIfScoreHighEnough(score))
+        {
+            string tag = highScoreTag.GetComponent<TMPro.TMP_InputField>().text;
+            ScoreLoader.AddScore(tag, score);
+            SceneManager.LoadScene("MenuScene");
+        }
     }
 
 }

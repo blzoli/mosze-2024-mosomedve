@@ -12,9 +12,9 @@ public class PlayerControllerTests
     [SetUp]
     public void SetUp()
     {
-        // Create a new GameObject and add the PlayerController component
-        player = new GameObject();
-        playerController = player.AddComponent<PlayerController>();
+        // Create a new GameObject and instantiate a copy of the Player prefab
+        player = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Player"));
+        playerController = player.GetComponent<PlayerController>();
 
         // Add a SpriteRenderer component to calculate player width and height
         player.AddComponent<SpriteRenderer>();
@@ -28,7 +28,7 @@ public class PlayerControllerTests
         camera.tag = "MainCamera"; // Set the tag to MainCamera so Camera.main can find it
 
         // Set up the initial conditions for the test
-        playerController.moveSpeed = 5f;
+        playerController.moveSpeed = 5f; // Set the player's movement speed
         playerController.weapon = null; // No weapon equipped initially
         PlayerController.health = 5; // Reset health to default value
     }
