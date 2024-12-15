@@ -74,6 +74,7 @@ public class Game : MonoBehaviour
         else
         {
             if (Application.isPlaying) AudioManager.Instance.PlaySound("gameComplete");
+            CleanUpScene();
             Debug.Log("All stages completed.");
             isOver = true;
             isGameComplete = true;
@@ -178,16 +179,8 @@ public class Game : MonoBehaviour
         return spawnPosition;
     }
 
-    /// @brief Restarts current stage.
-    /// 
-    /// This method restarts the current stage by resetting the stage ID and player attributes.
-    public void RestartStage()
+    public void CleanUpScene() 
     {
-        score = 0;
-        isOver = false;
-        TogglePause(false);
-        CurrentStageID--;
-        PlayerController.ResetPlayer();
         // find all enemies by tag and destroy them
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject[] eprojectiles = GameObject.FindGameObjectsWithTag("EnemyProjectile");
@@ -199,6 +192,20 @@ public class Game : MonoBehaviour
         {
             Destroy(enemy);
         }
+    }
+
+    /// @brief Restarts current stage.
+    /// 
+    /// This method restarts the current stage by resetting the stage ID and player attributes.
+    public void RestartStage()
+    {
+        score = 0;
+        isOver = false;
+        TogglePause(false);
+        CurrentStageID--;
+        PlayerController.ResetPlayer();
+
+        CleanUpScene();
 
         if (isGameComplete)
         {
@@ -305,8 +312,18 @@ public class Game : MonoBehaviour
     /// and pause the game until the player presses R to continue.
     public void DisplayStory(string story)
     {
+
+        // destroy remaining projectiles. Player might run into them after the story is displayed
+        GameObject[] eprojectiles = GameObject.FindGameObjectsWithTag("EnemyProjectile");
+
+        foreach (GameObject eprojectile in eprojectiles)
+        {
+            Destroy(eprojectile);
+        }
+
+
         isStoryDisplayed = true;
-        storyText.GetComponent<TMPro.TextMeshProUGUI>().text = story;
+        storyText.transform.Find("story").GetComponent<TMPro.TextMeshProUGUI>().text = story;
         storyText.SetActive(true);
         if (isGameComplete)
         {

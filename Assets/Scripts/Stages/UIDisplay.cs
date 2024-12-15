@@ -38,7 +38,7 @@ public class GameUIDisplay : MonoBehaviour
 
     public void UpdateScore(int score)
     {
-        scoreText.text = "Score: " + score;
+        scoreText.text = ""+ score;
     }
 
     /// <summary>
@@ -47,7 +47,7 @@ public class GameUIDisplay : MonoBehaviour
     /// <param name="stageId">The current stage ID.</param>
     public void UpdateStage(int stageId)
     {
-        stageText.text = "Stage: " + stageId;
+        stageText.text = "CURRENT STAGE: " + stageId;
     }
 
     /// <summary>
@@ -102,7 +102,7 @@ public class GameUIDisplay : MonoBehaviour
             UpdateHealth(PlayerController.health);
         }
 
-        if (game.CurrentStageID != int.Parse(stageText.text.Split(' ')[1]))
+        if (game.CurrentStageID != int.Parse(stageText.text.Split(' ')[2]))
         {
             UpdateStage(game.CurrentStageID);
         }

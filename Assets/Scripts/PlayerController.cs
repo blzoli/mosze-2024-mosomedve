@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private float playerWidth;    ///< The half-width of the player sprite.
     private float playerHeight;   ///< The half-height of the player sprite.
 
-    private float fireRate = 0.33f; ///< Time between shots (3 shots per second)
+    private float fireRate = 0.25f; ///< Time between shots (4 shots per second)
     private float nextFireTime = 0f; ///< Time when the player can fire again
 
     private static GameObject explosion; ///< The explosion effect to play when the player is destroyed
