@@ -39,10 +39,7 @@ Az eredeti specifikációban megnevezett követelmények és használati esetek 
 | Restart Game (player) | Kész                |
 
 A Doxygen által generált dokumentáció jelenleg a Doxygen-documentation-html.rar tömörített mappában elérhető html formátumban.
-Teszt esetek elérthetőek (Edit mode)
-
-## A végleges verziót többek között még tovább fejlesztjük a következőkkel:
- - Szebb UI
+Teszt esetek elérthetőek (Edit mode és Play mode is)
 
  
  Amennyiben a Unity húzza be a Scenet, ez az Assets/Scenes mappában elérhető, és az editorba húzható a bal oldalon (korábban gondot okozott)
