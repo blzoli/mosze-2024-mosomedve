@@ -43,7 +43,6 @@ Teszt esetek elérthetőek (Edit mode)
 
 ## A végleges verziót többek között még tovább fejlesztjük a következőkkel:
  - Szebb UI
- - Újabb spriteok a még nem textúrált prefabokra
 
  
  Amennyiben a Unity húzza be a Scenet, ez az Assets/Scenes mappában elérhető, és az editorba húzható a bal oldalon (korábban gondot okozott)
