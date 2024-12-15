@@ -2531,7 +2531,7 @@ MonoBehaviour:
   - {fileID: 59552423770768593, guid: 768e9fad8bd7eca42958858e80be0754, type: 3}
   - {fileID: 59552423770768593, guid: df063f8b7c483e744a761e4d7b6062cc, type: 3}
   - {fileID: 59552423770768593, guid: 688cef88cc6f8f84584e23b3eeb8be74, type: 3}
-  highScoreTag: {fileID: 0}
+  highScoreTag: {fileID: 2066460891}
 --- !u!4 &1238230977
 Transform:
   m_ObjectHideFlags: 0

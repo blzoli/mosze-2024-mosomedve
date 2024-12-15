@@ -40,9 +40,8 @@ public class Game : MonoBehaviour
 
     /// @brief Boss prefabs
     public GameObject[] bosses;
-
     /// @brief Reference to high score tag input
-    public GameObject highScoreTag;
+    public TMPro.TMP_InputField highScoreTag;
 
     /// @brief Adds points to the player's score.
     public static void AddScore(int points)
@@ -362,9 +361,10 @@ public class Game : MonoBehaviour
     
     public void AddHighScore() 
     {
+        string tag = highScoreTag.text;
+        if (tag.Length != 3) return;
         if (ScoreLoader.CheckIfScoreHighEnough(score))
         {
-            string tag = highScoreTag.GetComponent<TMPro.TMP_InputField>().text;
             ScoreLoader.AddScore(tag, score);
             SceneManager.LoadScene("MenuScene");
         }
