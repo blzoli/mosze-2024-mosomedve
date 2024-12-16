@@ -4,6 +4,9 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+/// <summary>
+/// Tests the game over condition when all stages are completed.
+/// </summary>
 public class GameCompleteCondition
 {
     // A Test behaves as an ordinary method

@@ -178,6 +178,7 @@ public class Game : MonoBehaviour
         return spawnPosition;
     }
 
+    /// @brief Cleans up the scene by destroying all enemies and projectiles.
     public static void CleanUpScene()
     {
         // find all enemies by tag and destroy them
@@ -358,7 +359,8 @@ public class Game : MonoBehaviour
         }
         else TogglePause(true);
     }
-    
+
+    /// @brief Adds the player's score to the leaderboard, if it is high enough.
     public void AddHighScore() 
     {
         string tag = highScoreTag.text;

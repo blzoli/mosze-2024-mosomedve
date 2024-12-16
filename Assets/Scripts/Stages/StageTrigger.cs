@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// @class StageTrigger
-/// @brief This script triggers the next stage in the game upon collision.
+/// @brief This script triggers the next stage in the game upon collision. TESTING ONLY!
 ///
 /// This MonoBehaviour checks for collisions and, when colliding with another GameObject,
 /// it finds the Game instance and calls StartNextStage to proceed to the next stage.

@@ -2,7 +2,9 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-
+/// <summary>
+/// Tests if the enemy moves towards the player.
+/// </summary>
 public class EnemyTests
 {
     private GameObject player;

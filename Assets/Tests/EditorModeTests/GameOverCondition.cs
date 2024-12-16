@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 
 /// <summary>
-/// Represents the class for testing the game over condition.
+/// Represents the class for testing the game over condition when player dies.
 /// </summary>
 public class GameOverCondition
 {

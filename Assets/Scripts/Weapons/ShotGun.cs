@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Weapon that fires multiple projectiles in a spread pattern.
+/// </summary>
 public class ShotGun : Weapon
 {
-    public GameObject projectilePrefab;
-    public float projectileSpeed = 10f;
-    public int numberOfProjectiles = 5;
-    public float spreadAngle = 30f;
+    public GameObject projectilePrefab;  ///< The projectile prefab to instantiate.
+    public float projectileSpeed = 10f;  ///< The speed of the projectile.
+    public int numberOfProjectiles = 5;  ///< The number of projectiles to fire.
+    public float spreadAngle = 30f;  ///< The angle between each projectile.
 
-    private Vector2 direction;
+    private Vector2 direction;  ///< The direction of the projectile.
 
     public void Awake()
     {

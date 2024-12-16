@@ -5,20 +5,19 @@ using UnityEngine;
 /// </summary>
 public class LaserGun : Weapon
 {
-    /// <summary>
-    /// Fires the laser gun.
-    /// </summary>
-    /// 
-    public GameObject projectilePrefab;
-    public float projectileSpeed = 10f;
+    public GameObject projectilePrefab; ///< The projectile prefab to instantiate.
+    public float projectileSpeed = 10f; ///< The speed of the projectile.
 
-    private Vector2 direction;
+    private Vector2 direction; ///< The direction of the projectile.
 
     public void Awake()
     {
         this.damage = 1;
     }
 
+    /// <summary>
+    /// Fires the laser gun.
+    /// </summary>
     public override void Fire(GameObject caller)
     {
 

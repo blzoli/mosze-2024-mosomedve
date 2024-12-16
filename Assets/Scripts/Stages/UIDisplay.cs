@@ -37,6 +37,9 @@ public class GameUIDisplay : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the score display text based on the current score.
+    /// </summary>
     public void UpdateScore(int score)
     {
         scoreText.text = ""+ score;
@@ -101,6 +104,9 @@ public class GameUIDisplay : MonoBehaviour
         } else highScoreAddMenu.SetActive(false);
     }
 
+    /// <summary>
+    /// Limits the tag input field to three characters.
+    /// </summary>
     public void LimitTagToThreeChars()
     {
         // get input field

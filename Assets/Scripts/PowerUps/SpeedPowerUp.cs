@@ -7,8 +7,8 @@ using UnityEngine;
  */
 public class SpeedPowerUp : Item
 {
-    public float speedBoostAmount = 5f; 
-    public float duration = 5f;         
+    public float speedBoostAmount = 5f;  ///< The amount by which the player's speed is increased.
+    public float duration = 5f;         ///< The duration of the speed boost effect.
 
     /**
      * @brief Applies the speed boost effect to the player.
@@ -23,7 +23,12 @@ public class SpeedPowerUp : Item
     }
 
 
-
+    /**
+     * @brief Coroutine to apply the speed boost effect.
+     * 
+     * This coroutine increases the player's speed by the specified amount for the specified duration.
+     * @param player The GameObject representing the player.
+     */
     private IEnumerator ApplySpeedBoost(GameObject player)
     {
         Debug.Log("Applying speed boost...");

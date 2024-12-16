@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Script to show health bar above enemy.
+/// </summary>  
 public class ShowHealthBar : MonoBehaviour
 {
-    private GameObject enemy;
-    private int maxHealth;
-    private int currentHealth;
-    public GameObject healthBarPrefab;
+    private GameObject enemy;  ///< The enemy this health bar is for.
+    private int maxHealth;     ///< The maximum health of the enemy.
+    private int currentHealth; ///< The current health of the enemy.
+    public GameObject healthBarPrefab; ///< The health bar prefab.
+    
+    /// @brief Instantiate the health bar prefab and set the enemy.
     private void Start()
     {
         enemy = transform.gameObject;
@@ -27,6 +33,7 @@ public class ShowHealthBar : MonoBehaviour
         UpdateHealthBar();
     }
 
+    /// @brief Update the health bar width to reflect the current health.
     private void UpdateHealthBar()
     {
         // set x scale of health bar to current health / max health

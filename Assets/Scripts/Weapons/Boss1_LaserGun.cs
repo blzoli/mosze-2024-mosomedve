@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A modified version of LaserGun that fires three bullets at once.
+/// </summary>
 public class Boss1_LaserGun : Weapon
 {
     /// <summary>
     /// Fires the laser gun.
     /// </summary>
     /// 
-    public GameObject projectilePrefab;
-    public float projectileSpeed = 10f;
+    public GameObject projectilePrefab; ///< The projectile prefab to fire.
+    public float projectileSpeed = 10f; ///< The speed of the projectile.
 
     private Vector2 direction;
 
@@ -18,6 +21,9 @@ public class Boss1_LaserGun : Weapon
         this.damage = 1;
     }
 
+    /// <summary>
+    /// Fire the laser gun.
+    /// </summary>
     public override void Fire(GameObject caller)
     {
 
@@ -29,6 +35,9 @@ public class Boss1_LaserGun : Weapon
         }
     }
 
+    /// <summary>
+    /// Used in Fire method to instantiate a projectile at a given position.
+    /// </summary>
     private void fireGunAtPosition(Vector3 position)
     {
         GameObject projectile = Instantiate(projectilePrefab, position, Quaternion.identity);

@@ -4,6 +4,9 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+/// <summary>
+/// Tests the item drop behavior when the boss dies.
+/// </summary>
 public class ItemDropTest
 {
     private GameObject player;

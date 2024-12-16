@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour // NOT USED, FOR TESTING PURPOSES ONLY
 {
     public GameObject enemyPrefab;  
     public float spawnInterval = 10.0f; 

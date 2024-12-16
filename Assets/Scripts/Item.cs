@@ -52,6 +52,7 @@ public abstract class Item : MonoBehaviour
         moveInCircleCoroutine = StartCoroutine(MoveInCircle(position));
     }
 
+    /// @brief Moves the item in a circular path.
     private System.Collections.IEnumerator MoveInCircle(Vector3 position)
     {
         float angle = 0;
