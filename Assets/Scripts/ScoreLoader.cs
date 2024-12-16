@@ -18,8 +18,13 @@ public class Leaderboard
 
 public class ScoreLoader : MonoBehaviour
 {
-    private static string filePath = "Assets/Resources/scores.json";
+    private static string filePath;
     public static Leaderboard leaderboard;
+
+    private void Awake()
+    {
+        filePath = Path.Combine(Application.persistentDataPath, "scores.json");
+    }
 
     public void OnEnable()
     {
