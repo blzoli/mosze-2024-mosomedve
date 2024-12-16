@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine;
 
 [System.Serializable]
+/// @brief Represents a single entry in the leaderboard.
 public class LeaderboardEntry
 {
     public string name;
@@ -11,21 +12,32 @@ public class LeaderboardEntry
 }
 
 [System.Serializable]
+/// @brief Represents the leaderboard as a whole.
 public class Leaderboard
 {
     public List<LeaderboardEntry> leaderboard = new List<LeaderboardEntry>(10); // Max 10 entries
 }
 
+/// @brief Loads and saves the leaderboard data to a file.
 public class ScoreLoader : MonoBehaviour
 {
-    private static string filePath = "Assets/Resources/scores.json";
-    public static Leaderboard leaderboard;
+    private static string filePath;  ///< Path to the file where the scores are saved
 
+    public static Leaderboard leaderboard;  ///< The leaderboard data
+    
+    /// @brief Load the scores from the file when the script is enabled.
+    private void Awake()
+    {
+        filePath = Path.Combine(Application.persistentDataPath, "scores.json");
+    }
+
+    /// @brief Lead when the script is enabled.
     public void OnEnable()
     {
         LoadOrCreateScores();
     }
 
+    /// @brief Load or create the scores file.
     private void LoadOrCreateScores()
     {
         if (File.Exists(filePath))
@@ -40,6 +52,7 @@ public class ScoreLoader : MonoBehaviour
         }
     }
 
+    /// @brief Create an empty scores file.
     private void CreateEmptyScores()
     {
         leaderboard = new Leaderboard(); // Empty leaderboard
@@ -48,6 +61,7 @@ public class ScoreLoader : MonoBehaviour
         Debug.Log("Empty scores file created!");
     }
 
+    /// @brief Check if the score is high enough to be added to the leaderboard (top 10).
     public static bool CheckIfScoreHighEnough(int score)
     {
         // If there are less than 10 scores, it's always high enough to be added
@@ -61,6 +75,7 @@ public class ScoreLoader : MonoBehaviour
         return score > lowestScore;
     }
 
+    /// @brief Add a new score to the leaderboard.
     public static void AddScore(string name, int score)
     {
         // Check if the score qualifies for the leaderboard

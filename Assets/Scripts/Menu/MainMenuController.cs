@@ -12,25 +12,27 @@ public class MainMenuController : MonoBehaviour
     public GameObject MainMenuPanel;
     public GameObject LeaderboardPanel;
 
-    /// Load the game scene.
+    /// @brief Load the game scene.
     public void PlayGame()
     {
         SceneManager.LoadScene("MainScene");
     }
 
+    /// @brief Show the leaderboard panel.
     public void ShowLeaderBoard() 
     { 
         LeaderboardPanel.SetActive(true);
         MainMenuPanel.SetActive(false);
     }
 
+    /// @brief Hide the leaderboard panel.
     public void HideLeaderBoard()
     {
         LeaderboardPanel.SetActive(false);
         MainMenuPanel.SetActive(true);
     }
 
-    /// Quit the application.
+    /// @brief Quit the application.
     public void QuitGame()
     {
         Debug.Log("Quit Game");

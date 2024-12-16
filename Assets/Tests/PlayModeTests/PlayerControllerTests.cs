@@ -3,6 +3,9 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+/// <summary>
+/// Tests the following: Player takes damage, player health resets, player health increases, player fires weapon.
+/// </summary>
 public class PlayerControllerTests
 {
     private GameObject player;

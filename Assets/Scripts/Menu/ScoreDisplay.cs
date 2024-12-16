@@ -4,6 +4,9 @@ using TMPro;
 using System;
 using System.Collections;
 
+/// <summary>
+/// Handles the display of the leaderboard on the screen.
+/// </summary>
 public class ScoreDisplay : MonoBehaviour
 {
     public TextMeshProUGUI titleText;  // The title text, e.g., "Leaderboard"
@@ -15,6 +18,9 @@ public class ScoreDisplay : MonoBehaviour
         StartCoroutine(DisplayLeaderboard());
     }
 
+    /// <summary>
+    /// Parses the leaderboard data and displays it on the screen.
+    /// </summary>
     private IEnumerator DisplayLeaderboard()
     {
         yield return new WaitForSeconds(0.1f); // Wait for a short time to ensure the leaderboard is loaded
@@ -53,6 +59,9 @@ public class ScoreDisplay : MonoBehaviour
             }
         }
 
+    /// <summary>
+    /// Formats the date and time string to a more readable format.
+    /// </summary>
     private string FormatDateTime(string datetime)
     {
         DateTime parsedDateTime;

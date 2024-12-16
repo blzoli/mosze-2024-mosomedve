@@ -3,6 +3,9 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+/// <summary>
+/// Tests the power-up behavior when the player picks them up.
+/// </summary>
 public class PowerUpTests
 {
     private GameObject player;

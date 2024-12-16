@@ -4,6 +4,11 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+/// <summary>
+/// Test to check if the player loses health when colliding with an asteroid
+/// </summary>
+
+
 public class AsteroidCollision
 {
     // A Test behaves as an ordinary method

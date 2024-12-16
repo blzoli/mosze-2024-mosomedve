@@ -4,6 +4,10 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+
+/// <summary>
+/// Tests the health bar behavior when the boss takes damage.
+/// </summary>
 public class HealthBarTest
 {
     private GameObject player;

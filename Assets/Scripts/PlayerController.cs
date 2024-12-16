@@ -22,9 +22,9 @@ public class PlayerController : MonoBehaviour
 
     private static GameObject explosion; ///< The explosion effect to play when the player is destroyed
 
-    private GameObject mainSprite;
-    private GameObject leftSprite;
-    private GameObject rightSprite;
+    private GameObject mainSprite; ///< The main sprite of the player
+    private GameObject leftSprite; ///< The left-facing sprite of the player
+    private GameObject rightSprite; ///< The right-facing sprite of the player
 
 
     /**

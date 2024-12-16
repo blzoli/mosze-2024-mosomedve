@@ -6,10 +6,10 @@ using UnityEngine;
 /// </summary>
 public class RocketLauncher : Weapon
 {
-    public GameObject projectilePrefab;
-    public float projectileSpeed = 3f;
+    public GameObject projectilePrefab;  ///< The projectile prefab to instantiate.
+    public float projectileSpeed = 3f;  ///< The speed of the projectile.
 
-    private Vector2 direction;
+    private Vector2 direction;  ///< The direction of the projectile.
 
     public void Awake()
     {
@@ -18,8 +18,6 @@ public class RocketLauncher : Weapon
     /// <summary>
     /// Fires the rocket launcher.
     /// </summary>
-    /// 
-
     public override void Fire(GameObject caller)
     {
 
